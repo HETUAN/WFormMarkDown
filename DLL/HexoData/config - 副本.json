@@ -1,0 +1,23 @@
+{
+  "Site": { /*这里的配置，可以对应到博客主页标题*/
+    "title": "Bruce's Blog", /*站点名，站点左上角*/
+    "subtitle": "A CSharp Coder", /*副标题，站点左上角*/
+    "description": "", /*给搜索引擎看的，对站点的描述，可以自定义*/
+    "author": "", /*在站点左下角可以看到*/
+    "email": "", /*你的联系邮箱*/
+    "language": "" /*语言*/
+  },
+  "Deployment": { /*Deployment 站点部署到github要配置，上一节中已经讲过*/
+    "deploy": "", /**/
+    "type": "github", /**/
+    "repository": "https://github.com/zippera/zippera.github.io.git", /*github 地址*/
+    "branch": "master", /*分支*/
+    "UserName": "HETUAN", /*用户名*/
+    "PassWord": "******" /*密码*/
+  },
+  "Pagination": { /*每页显示文章数，可以自定义*/
+    "per_page": "5",
+    "pagination_dir": "page",
+    "page_data": "//Data//page_data.json"
+  }
+}
