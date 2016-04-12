@@ -14,7 +14,6 @@ namespace WFormMarkDown
 {
     public partial class Form1 : Form
     {
-        private string baseDir = @"D:\Sublime\Blog";
         private Common.LeftTree leftTree;
         public Form1()
         {
@@ -39,7 +38,7 @@ namespace WFormMarkDown
         /// <returns></returns>
         private bool InitLeftTree()
         {
-            leftTree = new Common.LeftTree(baseDir);
+            leftTree = new Common.LeftTree(WFormMarkDown.Program.GetConfig().BlogDirectory);
             leftTree.RenderTree(treeView1);
             return true;
         }
@@ -53,11 +52,6 @@ namespace WFormMarkDown
             return true;
         }
 
-
-
-        private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-        }
 
         private void treeView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -90,7 +84,7 @@ namespace WFormMarkDown
             string curDir;
             if (treeView1.SelectedNode == null)
             {
-                curDir = baseDir;
+                curDir = WFormMarkDown.Program.GetConfig().BlogDirectory;
             }
             else
             {
@@ -108,6 +102,48 @@ namespace WFormMarkDown
             FunctionForm.BaseDirectory bd = new FunctionForm.BaseDirectory();
             bd.SetBaseDir("");
             bd.Show();
+        }
+
+        /// <summary>
+        /// 提交推送
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Push_toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+        }
+
+        /// <summary>
+        /// 本地查看
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RUnLocal_toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            string HostAddress = "http://localhost:8181/";
+            if (Common.RunInLocal.Run(HostAddress))
+            {
+                MessageBox.Show("网站启动成功！");
+            }
+            else
+            {
+                MessageBox.Show("网站启动失败！");
+            }
+        }
+
+        /// <summary>
+        /// 编译配置文件和MarkDown文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Build_toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Stop_toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Program.SetIsRunInLocal(false);
         }
     }
 }

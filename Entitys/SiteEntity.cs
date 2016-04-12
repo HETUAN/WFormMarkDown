@@ -16,6 +16,9 @@ namespace WFormMarkDown.Entitys
         public string description { get; set; }
         public string author { get; set; }
         public string email { get; set; }
+        public string headico { get; set; }
         public string language { get; set; }
+        public int localport { get; set; }
+        public List<string> headref { get; set; }
     }
 }

@@ -4,21 +4,33 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection;
 
 namespace WFormMarkDown
 {
     static class Program
     {
+        private static string exeDir;
         private static string baseDir;
-        private static string dataDir;
         private static string configDir;
-        private static string ddDir;
+        private static string dataDir;
+        private static string blogDir;
         private static Entitys.ConfigEntity Config;
-        private static Entitys.ConfigEntity GetConfig()
+        public static Entitys.ConfigEntity GetConfig()
         {
             return Program.Config;
         }
 
+        private static bool IsRunInLocal = false;
+        public static bool GetIsRunInLocal()
+        {
+            return IsRunInLocal;
+        }
+        public static bool SetIsRunInLocal(bool state)
+        {
+            IsRunInLocal = state;
+            return IsRunInLocal;
+        }
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -27,10 +39,11 @@ namespace WFormMarkDown
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            baseDir = Environment.CurrentDirectory;
-            dataDir = baseDir + "\\HexoData";
-            configDir = dataDir + "\\config.json";
-            ddDir = dataDir + "\\Data";
+            exeDir = Environment.CurrentDirectory;
+            baseDir = exeDir + "\\HexoData";
+            configDir = baseDir + "\\config.json";
+            dataDir = baseDir + "\\Data";
+            blogDir = baseDir + "\\Blog";
             if (!InitProgram())
             {
                 return;
@@ -60,9 +73,29 @@ namespace WFormMarkDown
                 if (re == DialogResult.Yes)
                 {
                     // 创建
+                    Directory.CreateDirectory(baseDir);
+                    //如果不存在 则从嵌入资源内读取 BlockSet.xml 
+                    Assembly asm = Assembly.GetExecutingAssembly();//读取嵌入式资源
+                    Stream sm = asm.GetManifestResourceStream("WFormMarkDown.DLL.HexoData.config.json");
+                    StreamReader sr = new StreamReader(sm);
+                    string configContent = sr.ReadToEnd();
+                    Entitys.ConfigEntity configEntity = Newtonsoft.Json.JsonConvert.DeserializeObject<Entitys.ConfigEntity>(configContent);
+                    configEntity.BlogDirectory = blogDir;
+                    configEntity.CurrentDirectory = baseDir;
+                    configContent = Newtonsoft.Json.JsonConvert.SerializeObject(configEntity);
+                    using (StreamWriter sw = File.CreateText(configDir))
+                    {
+                        sw.Write(configContent);
+                    }
+
+                    //File.WriteAllText(configDir, configContent, System.Text.Encoding.UTF8);
                     Directory.CreateDirectory(dataDir);
-                    File.Create(configDir);
-                    Directory.CreateDirectory(ddDir);
+                    Directory.CreateDirectory(blogDir);
+                    using (StreamWriter sw = File.CreateText(blogDir + "\\README.MD"))
+                    {
+                        sw.Write("Hello World!");
+                    }
+                    //File.WriteAllText(blogDir + "\\README.MD", "Hello World!", System.Text.Encoding.UTF8);
                     return true;
                 }
                 else
@@ -76,7 +109,7 @@ namespace WFormMarkDown
         {
             try
             {
-                string config = File.ReadAllText(configDir);
+                string config = File.ReadAllText(configDir, System.Text.Encoding.UTF8);
                 Config = Newtonsoft.Json.JsonConvert.DeserializeObject<Entitys.ConfigEntity>(config);
                 return true;
             }

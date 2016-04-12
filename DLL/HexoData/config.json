@@ -1,19 +1,25 @@
 {
+  "ischanged":"True",
+  "CurrentDirectory":"",
+  "BlogDirectory":"",
   "Site": {
-    "title": "Bruce's Blog",
-    "subtitle": "A CSharp Coder",
+    "title": "",
+    "subtitle": "",
     "description": "",
     "author": "",
     "email": "",
-    "language": ""
+    "headico": "",
+    "language": "zh-CN",
+    "localport": "8181",
+	"headref":["1.css","2.css"]
   },
   "Deployment": {
     "deploy": "",
     "type": "github",
-    "repository": "https://github.com/zippera/zippera.github.io.git",
+    "repository": "",
     "branch": "master",
-    "UserName": "HETUAN",
-    "PassWord": "******"
+    "UserName": "",
+    "PassWord": ""
   },
   "Pagination": {
     "per_page": "5",

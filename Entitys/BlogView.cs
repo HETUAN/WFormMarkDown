@@ -10,6 +10,7 @@ namespace WFormMarkDown.Entitys
     {
         public int id { get; set; }
         public int num { get; set; }
+        public int hashcode { get; set; }
         public string title { get; set; }
         public string type { get; set; }
         public string tag { get; set; }
@@ -17,5 +18,6 @@ namespace WFormMarkDown.Entitys
         public DateTime time { get; set; }
         public string describe { get; set; }
         public string imgimgurl { get; set; }
+        public bool ischanged { get; set; }
     }
 }

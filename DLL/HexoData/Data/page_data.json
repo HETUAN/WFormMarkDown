@@ -3,24 +3,28 @@
     {
       "id": "",
       "num": "",
+      "hashcode": "",
       "title": "",
       "type": "",
       "tag": "",
       "url": "",
       "time": "",
       "describe": "",
-      "imgurl": ""
+      "imgurl": "",
+	  "ischanged":""
     },
     {
       "id": "",
       "num": "",
+      "hashcode": "",
       "title": "",
       "type": "",
       "tag": "",
       "url": "",
       "time": "",
       "describe": "",
-      "imgurl": ""
+      "imgurl": "",
+	  "ischanged":""
     }
   ],
   "edittime": ""
