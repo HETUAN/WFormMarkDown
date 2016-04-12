@@ -15,6 +15,7 @@ namespace WFormMarkDown
         private static string configDir;
         private static string dataDir;
         private static string blogDir;
+        private static string markDownDir;
         private static Entitys.ConfigEntity Config;
         public static Entitys.ConfigEntity GetConfig()
         {
@@ -44,6 +45,7 @@ namespace WFormMarkDown
             configDir = baseDir + "\\config.json";
             dataDir = baseDir + "\\Data";
             blogDir = baseDir + "\\Blog";
+            markDownDir = baseDir + "\\MarkDown";
             if (!InitProgram())
             {
                 return;
@@ -90,11 +92,16 @@ namespace WFormMarkDown
 
                     //File.WriteAllText(configDir, configContent, System.Text.Encoding.UTF8);
                     Directory.CreateDirectory(dataDir);
+                    Directory.CreateDirectory(markDownDir);
                     Directory.CreateDirectory(blogDir);
                     using (StreamWriter sw = File.CreateText(blogDir + "\\README.MD"))
                     {
                         sw.Write("Hello World!");
                     }
+                    Common.GitHelper git = new Common.GitHelper();
+                    git.Init(blogDir.Replace("\\", "/"));
+                    git.Add(blogDir.Replace("\\", "/"));
+                    git.Commit(blogDir.Replace("\\", "/"), "asdf");
                     //File.WriteAllText(blogDir + "\\README.MD", "Hello World!", System.Text.Encoding.UTF8);
                     return true;
                 }

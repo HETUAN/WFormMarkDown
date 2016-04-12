@@ -50,8 +50,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\MvcApp\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Owin">
-      <HintPath>..\HSolution\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -69,6 +70,7 @@
     <Compile Include="Common\ContentTypeDic.cs" />
     <Compile Include="Common\DirectoryHelper.cs" />
     <Compile Include="Common\FileHelper.cs" />
+    <Compile Include="Common\GitHelper.cs" />
     <Compile Include="Common\LeftTree.cs" />
     <Compile Include="Common\RunInLocal.cs" />
     <Compile Include="Common\Startup.cs" />
@@ -136,7 +138,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DLL\MarkdownSharp.dll" />
+    <Content Include="DLL\Microsoft.Owin.dll" />
+    <Content Include="DLL\Microsoft.Owin.Host.HttpListener.dll" />
+    <Content Include="DLL\Microsoft.Owin.Hosting.dll" />
     <Content Include="DLL\Newtonsoft.Json.dll" />
+    <Content Include="DLL\Owin.dll" />
     <Content Include="DLL\OwinWebServer.exe" />
   </ItemGroup>
   <ItemGroup>
