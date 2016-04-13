@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang = "en">
+	<meta charset = "UTF-8">
+	<title>天气预报</title>
+	<link href="weather.css" rel="stylesheet">
+<script src="js/jquery-1.11.2.js"></script>
+	
+	
+</head>
+<body>
+	<div class="bgImg clear">
+		<div class="curContent">
+			<div>
+				<p class="curCity" id="curCity">hehe</p>
+				<p class="curTime" >
+				<span id="curDate">2015年11月23日</span>
+				 &nbsp;
+				 <span id="curWeek"></span></p>
+
+			</div>
+
+			<div>
+			<div class="changeCity">
+				<label for="switchCity">
+					<input type="button" value="[切换城市]" class="btCity" id="switchCity"/>
+				</label>
+				</div>
+				<div class="selectCity" id="selectCity">
+				<div id="province">
+					<select>
+						<option value="0">请选择省/自治区/直辖市</option>
+						<option value="1">北京</option>
+						<option value="2">内蒙古</option>
+					</select>
+					</div>
+					<div id="city">
+					<select>
+						<option value="0">请选择城市</option>
+						<option value="1">北京市</option>
+						<option value="2">包头市</option>
+					</select>
+					</div>
+					<div id="area">
+					<select>
+						<option value="0">请选择区/县</option>
+						<option value="1">北京市</option>
+						<option value="2">包头市</option>
+					</select>
+					</div>
+					<div id="number">
+					</div>
+					<input type="button"  id='subCity'value="确定" class="ensure"/>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="curWeather clear">
+			<ul>
+				<li><p class="curTemWord">
+				    <span>当前温度：</span>
+					<span id="curTemperature">-2℃</span>
+					</p>
+					<img id='curPic' class="curPic"src="img/icons/阵雨.png">
+					<p id="curState">多云</p>					
+					<p id="nowDate">更新时间：09:55:01</p>
+					<p id="nowTime">09:55:01</p>
+				</li>
+			</ul>
+
+			<ul class="curAir">
+				<li>
+					<p>
+					<span id="dirWind">东北风</span>
+					<span id="rankWind">2级</span></p>
+					<p>
+					<span id="quality">优</span>
+					<span id="pm">32</span></p>
+					<p>湿度 
+					<span id='humidity'>63%</span></p>				
+				</li>
+			</ul>
+		</div>
+
+			<ul class="preWeather" id="preWeek">
+				<li>
+					<p class="week">星期二</p>
+					<img id="purPicture1" src="img/icons/阵雨.png"/>
+					<p id="state1">多云</p>
+					<p id="range1">-2℃~20</p>			
+				</li>
+				<li>
+					<p class="week">星期三</p>
+					<img id="purPicture2" src="img/icons/阵雨.png">
+					<p id="perState2">多云</p>
+					<p id="perRange2">-2℃~20</p>				
+				</li>
+				<li>
+					<p class="week">星期四</p>
+					<img id="purPicture3" src="img/icons/阵雨.png">
+					<p id="perState3">多云</p>
+					<p id="perRange3">-2℃~20</p>				
+				</li>
+				<li>
+					<p class="week">星期五</p>
+					<img id="purPicture4" src="img/icons/阵雨.png">
+					<p id="perState4">多云</p>
+					<p id="perRange4">-2℃~20</p>				
+				</li>
+				<li class="border">
+					<p class="week">星期四</p>
+					<img id="purPicture5" src="img/icons/阵雨.png">
+					<p id="perState5">多云</p>
+					<p id="perRange5">-2℃~20</p>				
+				</li>
+				
+			</ul>
+
+	</div>
+	<script src="js/citys.js"></script>
+	<script src="js/weather.js"></script>
+	<!-- <script src="js/getWeather.js"></script> -->
+	<script src="js/getcity.js"></script>
+</body>
+</html>

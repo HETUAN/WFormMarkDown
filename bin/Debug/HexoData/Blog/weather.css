@@ -1,0 +1,151 @@
+body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,center,u,b,i {
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+	font-style:normal;
+	font-size:100%
+}
+:focus {
+	outline:0
+}
+
+.clear:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clear{*+height:1%;}
+
+
+/*.clear{overflow:auto;_height:1%}*/
+.clear{overflow:hidden;_zoom:1;}
+html,body{
+	width: 100%;
+	height: 100%
+}
+body{
+	background: url(img/weather/晴.jpg) no-repeat;
+	background-size: cover;
+}
+
+.curContent{
+	margin: 0px auto;
+	width: 500px;
+	margin-top: 10px;
+	color: #fff;
+}
+.curCity{
+	margin-top: 10px;
+	font-size: 44px;
+	text-align: center;
+}
+.curTime{
+	margin-top: 10px;
+	font-size: 24px;
+	text-align: center;
+}
+.curPic{
+	display: block;
+    width: 180px;
+    margin: 10px 0px;
+}
+.btCity{
+	display: inline-block;
+	font-size: 18px;
+	text-align: center;
+	background: #E7E7E7;
+	border:1px solid #E7E7E7;
+
+}
+.selectCity{
+	height: 100px;
+	width: 425px;
+	background-color: #fff;
+	opacity:0.8;
+	margin: 0px auto;
+	margin-top: 10px;
+	display:none;
+	text-align: center;
+}
+.selectCity div{
+	display: inline-block;
+/*	width: 150px;*/
+	margin-right: 3px;
+	margin-top: 20px;
+	
+}
+.changeCity{
+	width: 100px;
+	margin:0px auto;
+	margin-top: 10px;
+}
+.curWeather{
+	margin: 0px auto;
+    width: 480px;
+    margin-top: 10px;
+        height: 500px;
+
+}
+.curWeather ul{
+	float: left;
+ /*   border: 1px #000 solid;*/
+    width: 218px;
+    text-align: center;
+    height: 400px;
+    line-height: 30px;
+    margin-right: 20px;
+    background-color:rgba(0,69,147,0.5);
+   /* opacity: 0.5;*/
+
+}
+.curWeather ul li{
+	display: inline-block;
+	text-align: center;
+}
+/*.preWeather{
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 662px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;  
+    margin: 0px auto;
+}*/
+.preWeather{
+	position: absolute;
+	width:100%;
+	bottom: 5px;
+	text-align: center;
+
+}
+.preWeather li{
+	display: inline-block;
+	width:120px;
+	border-right: 2px #cdcdcd solid;
+	height: 150px;
+	margin-right: 20px;
+}
+.preWeather li p{
+	margin: 10px 0px;
+}
+.preWeather .border{
+	border: none;
+}
+.curWeather{
+	color: #fff;
+	font-size: 20px;
+}
+.curWeather .curAir{
+	height: 400px;
+	line-height: 90px;
+}
+.curWeather p{
+	margin: 10px;
+
+}
+
+.ensure{
+	margin-top: 10px;
+	display: inline-block;
+	width: 50px;
+	height: 30px;
+}

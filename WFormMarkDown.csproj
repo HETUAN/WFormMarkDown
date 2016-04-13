@@ -139,18 +139,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DLL\MarkdownSharp.dll" />
-    <Content Include="DLL\Microsoft.Owin.dll" />
-    <Content Include="DLL\Microsoft.Owin.Host.HttpListener.dll" />
-    <Content Include="DLL\Microsoft.Owin.Hosting.dll" />
-    <Content Include="DLL\Newtonsoft.Json.dll" />
-    <Content Include="DLL\Owin.dll" />
-    <Content Include="DLL\OwinWebServer.exe" />
-    <Content Include="DLL\web\index.html" />
-    <Content Include="DLL\web\style.css" />
+    <EmbeddedResource Include="DLL\MarkdownSharp.dll" />
+    <EmbeddedResource Include="DLL\Microsoft.Owin.dll" />
+    <EmbeddedResource Include="DLL\Microsoft.Owin.Host.HttpListener.dll" />
+    <EmbeddedResource Include="DLL\Microsoft.Owin.Hosting.dll" />
+    <EmbeddedResource Include="DLL\Newtonsoft.Json.dll" />
+    <EmbeddedResource Include="DLL\Owin.dll" />
+    <EmbeddedResource Include="DLL\web\index.html" />
+    <EmbeddedResource Include="DLL\web\style.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="StaticFile\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DLL\OwinWebServer.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
