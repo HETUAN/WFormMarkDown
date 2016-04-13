@@ -17,6 +17,7 @@ namespace WFormMarkDown.Common
         static Startup()
         {
             LocalDir = Program.GetConfig().BlogDirectory;// @"C:\Users\hepw\Desktop\weather";
+            //LocalDir = @"C:\Users\hepw\Desktop\hetuan.github.io-master";
         }
 
         public void Configuration(IAppBuilder appBuilder)

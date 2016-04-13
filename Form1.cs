@@ -120,15 +120,33 @@ namespace WFormMarkDown
         /// <param name="e"></param>
         private void RUnLocal_toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            string HostAddress = "http://localhost:8181/";
-            if (Common.RunInLocal.Run(HostAddress))
-            {
-                MessageBox.Show("网站启动成功！");
-            }
-            else
-            {
-                MessageBox.Show("网站启动失败！");
-            }
+            Common.ProcessHelper.RunOwinWebServer();
+            //if (Program.GetIsRunInLocal())
+            //{
+            //    if (Common.RunInLocal.StopServer())
+            //    {
+            //        MessageBox.Show("网站停止成功！");
+            //        Program.SetIsRunInLocal(true);
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("网站停止失败！");
+            //    }
+            //}
+            //else
+            //{
+            //    //string HostAddress = "http://localhost:8181/";
+            //    if (Common.RunInLocal.RunServer())
+            //    {
+            //        MessageBox.Show("网站启动成功！");
+            //        Program.SetIsRunInLocal(true);
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("网站启动失败！");
+            //    }
+
+            //}
         }
 
         /// <summary>

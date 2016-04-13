@@ -72,6 +72,7 @@
     <Compile Include="Common\FileHelper.cs" />
     <Compile Include="Common\GitHelper.cs" />
     <Compile Include="Common\LeftTree.cs" />
+    <Compile Include="Common\ProcessHelper.cs" />
     <Compile Include="Common\RunInLocal.cs" />
     <Compile Include="Common\Startup.cs" />
     <Compile Include="Common\StaticData.cs" />
@@ -145,6 +146,8 @@
     <Content Include="DLL\Newtonsoft.Json.dll" />
     <Content Include="DLL\Owin.dll" />
     <Content Include="DLL\OwinWebServer.exe" />
+    <Content Include="DLL\web\index.html" />
+    <Content Include="DLL\web\style.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="StaticFile\" />

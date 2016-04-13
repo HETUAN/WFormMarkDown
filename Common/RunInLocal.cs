@@ -12,20 +12,13 @@ namespace WFormMarkDown.Common
     {
         //private static string serverUrl = "http://localhost:8181/";
 
-        public static bool RunServer(string serverUrl)
+        public static Thread t = new Thread(new ThreadStart(Run));
+
+        public static bool RunServer()
         {
             try
             {
-                Thread t = new Thread(new ParameterizedThreadStart(Run));
-                t.Start(serverUrl);
-                //while(true)
-                //{
-                //    Thread.Sleep(1000);
-                //    if (!Program.GetIsRunInLocal())
-                //    {
-                //        t.Abort();
-                //    }
-                //}
+                t.Start();
                 return true;
             }
             catch (Exception)
@@ -33,21 +26,33 @@ namespace WFormMarkDown.Common
                 return false;
             }
         }
-         
 
-        public static void Run(object serverUrl)
+        public static bool StopServer()
+        {
+            //if (t.ThreadState == ThreadState.Running)
+            //{
+            t.Abort();
+            t.DisableComObjectEagerCleanup();
+           
+            return true;
+            //}
+            //return false;
+        }
+
+        public static void Run()
         {
             try
             {
+                string serverUrl = "http://localhost:"+Program.GetConfig().Site.localport;
                 var startOpts = new StartOptions(serverUrl.ToString())
                 {
                 };
-                using (WebApp.Start<Startup>(startOpts))
-                {
-                    Console.WriteLine("Server run at " + serverUrl + " , press Enter to exit.");
-                    // Console.ReadLine();
-                    System.Diagnostics.Process.Start("explorer.exe", serverUrl.ToString());
-                }
+                WebApp.Start<Startup>(startOpts);
+
+                Console.WriteLine("Server run at " + serverUrl + " , press Enter to exit.");
+                // Console.ReadLine();
+                System.Diagnostics.Process.Start("explorer.exe", serverUrl.ToString());
+
             }
             catch (Exception ex)
             {
@@ -59,9 +64,11 @@ namespace WFormMarkDown.Common
         {
             try
             {
-                var startOpts = new StartOptions(serverUrl)
+                var startOpts = new StartOptions()
                 {
                 };
+                startOpts.Urls.Add(serverUrl);
+                startOpts.Urls.Add(serverUrl.Replace("localhost","127.0.0.1"));
                 using (WebApp.Start<Startup>(startOpts))
                 {
                     Console.WriteLine("Server run at " + serverUrl + " , press Enter to exit.");
