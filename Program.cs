@@ -32,6 +32,20 @@ namespace WFormMarkDown
             IsRunInLocal = state;
             return IsRunInLocal;
         }
+
+        public static string GetBlogDir()
+        {
+            return blogDir;
+        }
+        public static string GetMarkDownDir()
+        {
+            return markDownDir;
+        }
+        public static string GetDataDir()
+        {
+            return dataDir;
+        }
+
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -60,11 +74,6 @@ namespace WFormMarkDown
         /// <returns>初始化程序</returns>
         private static bool InitProgram()
         {
-            //string baseDir = Environment.CurrentDirectory;
-            //string dataDir = baseDir + "\\HexoData";
-            //string configDir = dataDir + "\\config.json";
-            //string ddDir = dataDir + "\\Data";
-
             if (Directory.Exists(dataDir))
             {
                 return true;
@@ -98,11 +107,6 @@ namespace WFormMarkDown
                     {
                         sw.Write("Hello World!");
                     }
-                    Common.GitHelper git = new Common.GitHelper();
-                    git.Init(blogDir.Replace("\\", "/"));
-                    git.Add(blogDir.Replace("\\", "/"));
-                    git.Commit(blogDir.Replace("\\", "/"), "asdf");
-                    //File.WriteAllText(blogDir + "\\README.MD", "Hello World!", System.Text.Encoding.UTF8);
                     return true;
                 }
                 else

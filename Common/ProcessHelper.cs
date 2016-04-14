@@ -28,19 +28,21 @@ namespace WFormMarkDown.Common
                     info.Invoke(null, null);
                 */
 
-                Assembly asm = Assembly.GetExecutingAssembly();//读取嵌入式资源
-                Stream sm = asm.GetManifestResourceStream("WFormMarkDown.DLL.OwinWebServer.exe");
-                //StreamReader sr = new StreamReader(sm);
-                byte[] bts = new byte[sm.Length];
-
-                sm.Read(bts, 0, bts.Length);
-                //StreamWriter sw = new StreamWriter(sm);
-
                 string path = Environment.CurrentDirectory + "\\HexoData\\blog\\OwinWebServer.exe";
-                FileStream fs = File.Create(path);
-                fs.Write(bts, 0, bts.Length);
-                fs.Close();
+                if (!File.Exists(path))
+                {
+                    Assembly asm = Assembly.GetExecutingAssembly();//读取嵌入式资源
+                    Stream sm = asm.GetManifestResourceStream("WFormMarkDown.DLL.OwinWebServer.exe");
+                    //StreamReader sr = new StreamReader(sm);
+                    byte[] bts = new byte[sm.Length];
 
+                    sm.Read(bts, 0, bts.Length);
+                    //StreamWriter sw = new StreamWriter(sm);
+
+                    FileStream fs = File.Create(path);
+                    fs.Write(bts, 0, bts.Length);
+                    fs.Close();
+                }
 
                 p.StartInfo.FileName = path;// @"C:\Program Files\Git\bin\sh.exe";
                 //p.StartInfo.FileName = @"cmd.exe";
@@ -75,7 +77,7 @@ namespace WFormMarkDown.Common
             }
             catch (Exception ex)
             {
-                return false; 
+                return false;
             }
         }
     }

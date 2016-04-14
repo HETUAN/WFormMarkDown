@@ -168,9 +168,14 @@ namespace WFormMarkDown
 
         }
 
-        private void Stop_toolStripMenuItem1_Click(object sender, EventArgs e)
+        private void InitGit_toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Program.SetIsRunInLocal(false);
+            string blogDir = Program.GetBlogDir().Replace("\\", "/");
+            Common.GitHelper git = new Common.GitHelper(blogDir);
+            git.Init(blogDir);
+            git.Add(blogDir);
+            git.Commit(blogDir, "commit" + DateTime.Now.ToString());
+            git.Remote(blogDir, Program.GetConfig().Deployment.repository, "123", "456");
         }
     }
 }

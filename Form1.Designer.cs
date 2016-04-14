@@ -39,6 +39,7 @@
             this.Build_toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.RunLocal_toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.Push_toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.InitGit_toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -46,7 +47,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.Stop_toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -76,7 +76,7 @@
             this.Build_toolStripMenuItem3,
             this.RunLocal_toolStripMenuItem2,
             this.Push_toolStripMenuItem1,
-            this.Stop_toolStripMenuItem1});
+            this.InitGit_toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(731, 25);
@@ -156,6 +156,14 @@
             this.Push_toolStripMenuItem1.Size = new System.Drawing.Size(44, 21);
             this.Push_toolStripMenuItem1.Text = "提交";
             this.Push_toolStripMenuItem1.Click += new System.EventHandler(this.Push_toolStripMenuItem1_Click);
+            // 
+            // InitGit_toolStripMenuItem1
+            // 
+            this.InitGit_toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
+            this.InitGit_toolStripMenuItem1.Name = "InitGit_toolStripMenuItem1";
+            this.InitGit_toolStripMenuItem1.Size = new System.Drawing.Size(38, 21);
+            this.InitGit_toolStripMenuItem1.Text = "Init";
+            this.InitGit_toolStripMenuItem1.Click += new System.EventHandler(this.InitGit_toolStripMenuItem1_Click);
             // 
             // panel2
             // 
@@ -242,14 +250,6 @@
             this.panel3.Size = new System.Drawing.Size(731, 20);
             this.panel3.TabIndex = 1;
             // 
-            // Stop_toolStripMenuItem1
-            // 
-            this.Stop_toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
-            this.Stop_toolStripMenuItem1.Name = "Stop_toolStripMenuItem1";
-            this.Stop_toolStripMenuItem1.Size = new System.Drawing.Size(44, 21);
-            this.Stop_toolStripMenuItem1.Text = "运行";
-            this.Stop_toolStripMenuItem1.Click += new System.EventHandler(this.Stop_toolStripMenuItem1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -297,7 +297,7 @@
         private System.Windows.Forms.ToolStripMenuItem Build_toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem RunLocal_toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem Push_toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem Stop_toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem InitGit_toolStripMenuItem1;
     }
 }
 
