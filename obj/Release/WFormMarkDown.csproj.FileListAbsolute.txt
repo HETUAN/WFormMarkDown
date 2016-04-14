@@ -14,4 +14,8 @@ E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.pdb
 E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\Microsoft.Owin.dll
 E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\Microsoft.Owin.Host.HttpListener.dll
 E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\Microsoft.Owin.Hosting.dll
-E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\Owin.dll
+E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\MarkdownSharp.pdb
+E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\MarkdownSharp.xml
+E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\Microsoft.Owin.xml
+E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\Microsoft.Owin.Host.HttpListener.xml
+E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\Microsoft.Owin.Hosting.xml

@@ -120,7 +120,16 @@ namespace WFormMarkDown
         /// <param name="e"></param>
         private void RUnLocal_toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            Common.ProcessHelper.RunOwinWebServer();
+            if (!Program.GetIsRunInLocal())
+            {
+                Common.ProcessHelper.RunOwinWebServer();
+                Program.SetIsRunInLocal(true);
+            }
+            else
+            {
+                Common.ProcessHelper.StopOwinWebServer();
+                Program.SetIsRunInLocal(false);
+            }
             //if (Program.GetIsRunInLocal())
             //{
             //    if (Common.RunInLocal.StopServer())
