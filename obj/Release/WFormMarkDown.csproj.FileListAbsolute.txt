@@ -19,3 +19,8 @@ E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\MarkdownSharp.xml
 E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\Microsoft.Owin.xml
 E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\Microsoft.Owin.Host.HttpListener.xml
 E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\Microsoft.Owin.Hosting.xml
+E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.FunctionForm.SiteBaseSettings.resources
+E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.FunctionForm.SiteRefSettings.resources
+E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.FunctionForm.DeploymentSettings.resources
+E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.FunctionForm.FileCreate.resources
+E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.FunctionForm.DirectoryCreate.resources

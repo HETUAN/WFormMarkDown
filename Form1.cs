@@ -14,7 +14,7 @@ namespace WFormMarkDown
 {
     public partial class Form1 : Form
     {
-        private Common.LeftTree leftTree;
+        public Common.LeftTree leftTree;
         public Form1()
         {
             InitializeComponent();
@@ -52,7 +52,6 @@ namespace WFormMarkDown
             return true;
         }
 
-
         private void treeView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             try
@@ -79,18 +78,8 @@ namespace WFormMarkDown
             Console.WriteLine(str);
         }
 
-        private void File_Create_ToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            string curDir;
-            if (treeView1.SelectedNode == null)
-            {
-                curDir = WFormMarkDown.Program.GetConfig().BlogDirectory;
-            }
-            else
-            {
-                curDir = ((FileEntity)treeView1.SelectedNode.Tag).GetFullPath();
-            }
-        }
+        #region 顶部按钮事件
+
 
         /// <summary>
         /// 设置用户主目录
@@ -177,5 +166,69 @@ namespace WFormMarkDown
             git.Commit(blogDir, "commit" + DateTime.Now.ToString());
             git.Remote(blogDir, Program.GetConfig().Deployment.repository, "123", "456");
         }
+
+        private void Site_Base_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FunctionForm.SiteBaseSettings sbs = new FunctionForm.SiteBaseSettings();
+            sbs.Show();
+        }
+
+        private void Site_Ref_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FunctionForm.SiteRefSettings sbs = new FunctionForm.SiteRefSettings();
+            sbs.Show();
+        }
+
+        private void Deployment_Config_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FunctionForm.DeploymentSettings ds = new FunctionForm.DeploymentSettings();
+            ds.Show();
+        }
+
+
+        /// <summary>
+        /// 创建MarkDown文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void File_Create_ToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            string curDir;
+            if (treeView1.SelectedNode == null)
+            {
+                curDir = WFormMarkDown.Program.GetConfig().BlogDirectory;
+            }
+            else
+            {
+                FileEntity fe = (FileEntity)treeView1.SelectedNode.Tag;
+                curDir = fe.GetFileType() == FileType.File ? Directory.GetParent(fe.GetFullPath()).FullName : fe.GetFullPath();
+            }
+
+            FunctionForm.FileCreate fc = new FunctionForm.FileCreate(curDir);
+            fc.DelLeftTreeEvent += InitLeftTree;
+            fc.Show();
+        }
+
+        private void Dir_Create_toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string curDir;
+            if (treeView1.SelectedNode == null)
+            {
+                curDir = WFormMarkDown.Program.GetConfig().BlogDirectory;
+            }
+            else
+            {
+                FileEntity fe = (FileEntity)treeView1.SelectedNode.Tag;
+                curDir = fe.GetFileType() == FileType.File ? Directory.GetParent(fe.GetFullPath()).FullName : fe.GetFullPath();
+            }
+
+            FunctionForm.DirectoryCreate dc = new FunctionForm.DirectoryCreate(curDir);
+            dc.DelLeftTreeEvent += InitLeftTree;
+            dc.Show();
+
+        }
+
+        #endregion
+
     }
 }

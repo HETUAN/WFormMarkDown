@@ -72,6 +72,8 @@
     <Compile Include="Common\FileHelper.cs" />
     <Compile Include="Common\GitHelper.cs" />
     <Compile Include="Common\LeftTree.cs" />
+    <Compile Include="Common\MarkDownCompile.cs" />
+    <Compile Include="Common\MarkDownHelper.cs" />
     <Compile Include="Common\ProcessHelper.cs" />
     <Compile Include="Common\RunInLocal.cs" />
     <Compile Include="Common\Startup.cs" />
@@ -100,6 +102,36 @@
     <Compile Include="FunctionForm\BaseDirectory.Designer.cs">
       <DependentUpon>BaseDirectory.cs</DependentUpon>
     </Compile>
+    <Compile Include="FunctionForm\DeploymentSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FunctionForm\DeploymentSettings.Designer.cs">
+      <DependentUpon>DeploymentSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionForm\DirectoryCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FunctionForm\DirectoryCreate.Designer.cs">
+      <DependentUpon>DirectoryCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionForm\FileCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FunctionForm\FileCreate.Designer.cs">
+      <DependentUpon>FileCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionForm\SiteBaseSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FunctionForm\SiteBaseSettings.Designer.cs">
+      <DependentUpon>SiteBaseSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionForm\SiteRefSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FunctionForm\SiteRefSettings.Designer.cs">
+      <DependentUpon>SiteRefSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -110,6 +142,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FunctionForm\BaseDirectory.resx">
       <DependentUpon>BaseDirectory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FunctionForm\DeploymentSettings.resx">
+      <DependentUpon>DeploymentSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FunctionForm\DirectoryCreate.resx">
+      <DependentUpon>DirectoryCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FunctionForm\FileCreate.resx">
+      <DependentUpon>FileCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FunctionForm\SiteBaseSettings.resx">
+      <DependentUpon>SiteBaseSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FunctionForm\SiteRefSettings.resx">
+      <DependentUpon>SiteRefSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -145,7 +192,7 @@
     <EmbeddedResource Include="DLL\Microsoft.Owin.Hosting.dll" />
     <EmbeddedResource Include="DLL\Newtonsoft.Json.dll" />
     <EmbeddedResource Include="DLL\Owin.dll" />
-    <EmbeddedResource Include="DLL\web\index.html" />
+    <EmbeddedResource Include="DLL\web\model.html" />
     <EmbeddedResource Include="DLL\web\style.css" />
   </ItemGroup>
   <ItemGroup>

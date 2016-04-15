@@ -15,7 +15,8 @@ namespace WFormMarkDown.Entitys
         public string type { get; set; }
         public string tag { get; set; }
         public string url { get; set; }
-        public DateTime time { get; set; }
+        public DateTime createtime { get; set; }
+        public DateTime edittime { get; set; }
         public string describe { get; set; }
         public string imgimgurl { get; set; }
         public bool ischanged { get; set; }

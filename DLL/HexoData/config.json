@@ -18,8 +18,8 @@
     "type": "github",
     "repository": "",
     "branch": "master",
-    "UserName": "",
-    "PassWord": ""
+    "username": "",
+    "password": ""
   },
   "Pagination": {
     "per_page": "5",

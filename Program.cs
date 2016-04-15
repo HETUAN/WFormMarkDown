@@ -10,18 +10,61 @@ namespace WFormMarkDown
 {
     static class Program
     {
+        /// <summary>
+        /// 程序所在目录
+        /// </summary>
         private static string exeDir;
+
+        /// <summary>
+        /// 程序创建的数据主目录
+        /// </summary>
         private static string baseDir;
+
+        /// <summary>
+        /// 配置文件路径
+        /// </summary>
         private static string configDir;
+
+        /// <summary>
+        /// 其他配置数据所在目录
+        /// </summary>
         private static string dataDir;
+        public static string GetDataDir()
+        {
+            return dataDir;
+        }
+
+        /// <summary>
+        /// 博客文件所在目录
+        /// </summary>
         private static string blogDir;
+
+        public static string GetBlogDir()
+        {
+            return blogDir;
+        }
+
+        /// <summary>
+        /// MarkDown文件所在目录
+        /// </summary>
         private static string markDownDir;
+        public static string GetMarkDownDir()
+        {
+            return markDownDir;
+        }
+
+        /// <summary>
+        /// 程序的主配置文件
+        /// </summary>
         private static Entitys.ConfigEntity Config;
         public static Entitys.ConfigEntity GetConfig()
         {
             return Program.Config;
         }
 
+        /// <summary>
+        /// 是否查看
+        /// </summary>
         private static bool IsRunInLocal = false;
         public static bool GetIsRunInLocal()
         {
@@ -33,18 +76,6 @@ namespace WFormMarkDown
             return IsRunInLocal;
         }
 
-        public static string GetBlogDir()
-        {
-            return blogDir;
-        }
-        public static string GetMarkDownDir()
-        {
-            return markDownDir;
-        }
-        public static string GetDataDir()
-        {
-            return dataDir;
-        }
 
         /// <summary>
         /// 应用程序的主入口点。
@@ -74,7 +105,7 @@ namespace WFormMarkDown
         /// <returns>初始化程序</returns>
         private static bool InitProgram()
         {
-            if (Directory.Exists(dataDir))
+            if (Directory.Exists(baseDir))
             {
                 return true;
             }
@@ -90,6 +121,7 @@ namespace WFormMarkDown
                     Stream sm = asm.GetManifestResourceStream("WFormMarkDown.DLL.HexoData.config.json");
                     StreamReader sr = new StreamReader(sm);
                     string configContent = sr.ReadToEnd();
+                    sr.Close();
                     Entitys.ConfigEntity configEntity = Newtonsoft.Json.JsonConvert.DeserializeObject<Entitys.ConfigEntity>(configContent);
                     configEntity.BlogDirectory = blogDir;
                     configEntity.CurrentDirectory = baseDir;
@@ -116,12 +148,39 @@ namespace WFormMarkDown
             }
         }
 
+        /// <summary>
+        /// 加载配置文件
+        /// </summary>
+        /// <returns></returns>
         private static bool LoadConfig()
         {
             try
             {
                 string config = File.ReadAllText(configDir, System.Text.Encoding.UTF8);
                 Config = Newtonsoft.Json.JsonConvert.DeserializeObject<Entitys.ConfigEntity>(config);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 保存配置文件
+        /// </summary>
+        /// <returns></returns>
+        public static bool SaveConfig()
+        {
+            try
+            {
+                string config = Newtonsoft.Json.JsonConvert.SerializeObject(GetConfig());
+                using (StreamWriter sw = new StreamWriter(configDir))
+                {
+                    sw.Write(config);
+                    sw.Close();
+                }
                 return true;
             }
             catch (Exception ex)

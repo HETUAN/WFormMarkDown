@@ -24,6 +24,7 @@ namespace WFormMarkDown.Common
 
         public bool RenderTree(TreeView tv)
         {
+            tv.Nodes.Clear();
             foreach (FileEntity item in FileList)
             {
                 TreeNode node = new TreeNode();
