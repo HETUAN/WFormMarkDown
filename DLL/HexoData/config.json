@@ -1,7 +1,7 @@
 {
-  "ischanged":"True",
-  "CurrentDirectory":"",
-  "BlogDirectory":"",
+  "ischanged": "True",
+  "CurrentDirectory": "",
+  "BlogDirectory": "",
   "Site": {
     "title": "",
     "subtitle": "",
@@ -11,9 +11,9 @@
     "headico": "",
     "language": "zh-CN",
     "localport": "8181",
-	"headref":["1.css","2.css"]
+    "headref": [ ]
   },
-  "Deployment": {
+  "Deployment": { 
     "deploy": "",
     "type": "github",
     "repository": "",

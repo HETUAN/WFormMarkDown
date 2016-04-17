@@ -76,7 +76,6 @@ namespace WFormMarkDown
             return IsRunInLocal;
         }
 
-
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -105,17 +104,19 @@ namespace WFormMarkDown
         /// <returns>初始化程序</returns>
         private static bool InitProgram()
         {
-            if (Directory.Exists(baseDir))
+            try
             {
-                return true;
-            }
-            else
-            {
-                DialogResult re = MessageBox.Show("是否进行数据初始化？", "数据初始化", MessageBoxButtons.YesNo);
-                if (re == DialogResult.Yes)
+                if (!Directory.Exists(baseDir))
                 {
-                    // 创建
-                    Directory.CreateDirectory(baseDir);
+                    DialogResult re = MessageBox.Show("是否进行数据初始化？", "数据初始化", MessageBoxButtons.YesNo);
+                    if (re == DialogResult.Yes)
+                    {
+                        // 创建
+                        Directory.CreateDirectory(baseDir);
+                    }
+                }
+                if (!File.Exists(configDir))
+                {
                     //如果不存在 则从嵌入资源内读取 BlockSet.xml 
                     Assembly asm = Assembly.GetExecutingAssembly();//读取嵌入式资源
                     Stream sm = asm.GetManifestResourceStream("WFormMarkDown.DLL.HexoData.config.json");
@@ -129,22 +130,32 @@ namespace WFormMarkDown
                     using (StreamWriter sw = File.CreateText(configDir))
                     {
                         sw.Write(configContent);
+                        sw.Close();
                     }
-
-                    //File.WriteAllText(configDir, configContent, System.Text.Encoding.UTF8);
+                }
+                if (!Directory.Exists(dataDir))
+                {
                     Directory.CreateDirectory(dataDir);
+                }
+                if (!Directory.Exists(markDownDir))
+                {
                     Directory.CreateDirectory(markDownDir);
-                    Directory.CreateDirectory(blogDir);
-                    using (StreamWriter sw = File.CreateText(blogDir + "\\README.MD"))
+                    using (StreamWriter sw = File.CreateText(markDownDir + "\\README.MD"))
                     {
                         sw.Write("Hello World!");
+                        sw.Close();
                     }
-                    return true;
                 }
-                else
+                if (!Directory.Exists(blogDir))
                 {
-                    return false;
+                    Directory.CreateDirectory(blogDir);
                 }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
             }
         }
 

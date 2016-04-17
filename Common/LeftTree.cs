@@ -13,13 +13,30 @@ namespace WFormMarkDown.Common
     /// </summary>
     public class LeftTree
     {
+        private string dataPath;
         private string baseDir;
         private List<FileEntity> FileList;
-        public LeftTree(string dir)
+        public LeftTree(string dir, string path)
         {
+            this.dataPath = Path.Combine(path,"MarkDownData.json");
             this.baseDir = dir;
             this.FileList = new List<FileEntity>();
             this.GetFiles();
+        }
+
+        /// <summary>
+        /// 刷新左侧目录
+        /// </summary>
+        public void LeftTreeRef()
+        {
+            this.GetFiles();
+
+        }
+
+        public bool SaveJson()
+        {
+            string jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(this.FileList);
+            return Common.FileHelper.WriteFile(jsonStr, this.dataPath);
         }
 
         public bool RenderTree(TreeView tv)
@@ -30,7 +47,7 @@ namespace WFormMarkDown.Common
                 TreeNode node = new TreeNode();
                 node.Name = item.GetId().ToString();
                 node.Text = item.GetName();
-                node.Tag = item; 
+                node.Tag = item;
                 if (item.GetFileType() == FileType.Directory)
                 {
                     RenderNodes(node, item.GetList());
@@ -50,7 +67,7 @@ namespace WFormMarkDown.Common
                 node.Tag = item;
                 if (item.GetFileType() == FileType.Directory)
                 {
-                    RenderNodes(node,item.GetList());
+                    RenderNodes(node, item.GetList());
                 }
                 pnode.Nodes.Add(node);
             }
@@ -59,7 +76,7 @@ namespace WFormMarkDown.Common
         private bool GetFiles()
         {
             if (Directory.Exists(this.baseDir))
-            { 
+            {
                 RefDirToTree(FileEntity.GetNextCount(), 0, this.baseDir, FileList);
                 return true;
             }

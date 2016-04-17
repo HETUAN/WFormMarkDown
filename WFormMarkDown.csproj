@@ -75,6 +75,7 @@
     <Compile Include="Common\MarkDownCompile.cs" />
     <Compile Include="Common\MarkDownHelper.cs" />
     <Compile Include="Common\ProcessHelper.cs" />
+    <Compile Include="Common\ProgramInit.cs" />
     <Compile Include="Common\RunInLocal.cs" />
     <Compile Include="Common\Startup.cs" />
     <Compile Include="Common\StaticData.cs" />

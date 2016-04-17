@@ -38,7 +38,13 @@ namespace WFormMarkDown
         /// <returns></returns>
         private bool InitLeftTree()
         {
-            leftTree = new Common.LeftTree(WFormMarkDown.Program.GetConfig().BlogDirectory);
+            if (this.leftTree == null)
+            {
+                this.leftTree = new Common.LeftTree(WFormMarkDown.Program.GetMarkDownDir(), WFormMarkDown.Program.GetDataDir());
+            }
+            else {
+                this.leftTree.LeftTreeRef();
+            }
             leftTree.RenderTree(treeView1);
             return true;
         }
@@ -157,14 +163,36 @@ namespace WFormMarkDown
 
         }
 
+        /// <summary>
+        /// Git 初始化 init Add Commit Remote
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InitGit_toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             string blogDir = Program.GetBlogDir().Replace("\\", "/");
+            string gitpwd = Program.GetConfig().Deployment.deploy;
+            if (string.IsNullOrWhiteSpace(gitpwd)||File.Exists(gitpwd))
+            {
+                MessageBox.Show("Git Bush 路径错误！");
+                return;
+            }
             Common.GitHelper git = new Common.GitHelper(blogDir);
             git.Init(blogDir);
+            return;
             git.Add(blogDir);
             git.Commit(blogDir, "commit" + DateTime.Now.ToString());
-            git.Remote(blogDir, Program.GetConfig().Deployment.repository, "123", "456");
+            if (string.IsNullOrWhiteSpace(Program.GetConfig().Deployment.repository))
+            {
+                MessageBox.Show("Git远程地址错误！");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(Program.GetConfig().Deployment.username) || string.IsNullOrWhiteSpace(Program.GetConfig().Deployment.password))
+            {
+                MessageBox.Show("Git远程用户错误！");
+                return;
+            }
+            git.Remote(blogDir, Program.GetConfig().Deployment.repository, Program.GetConfig().Deployment.username, Program.GetConfig().Deployment.password);
         }
 
         private void Site_Base_ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -229,6 +257,6 @@ namespace WFormMarkDown
         }
 
         #endregion
-
+         
     }
 }

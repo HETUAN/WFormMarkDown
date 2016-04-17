@@ -12,3 +12,8 @@ D:\NET\projects\TSolution\WFormMarkDown\obj\Debug\WFormMarkDown.csproj.GenerateR
 D:\NET\projects\TSolution\WFormMarkDown\obj\Debug\WFormMarkDown.exe
 D:\NET\projects\TSolution\WFormMarkDown\obj\Debug\WFormMarkDown.pdb
 D:\NET\projects\TSolution\WFormMarkDown\obj\Debug\WFormMarkDown.csprojResolveAssemblyReference.cache
+D:\NET\projects\TSolution\WFormMarkDown\obj\Debug\WFormMarkDown.FunctionForm.DeploymentSettings.resources
+D:\NET\projects\TSolution\WFormMarkDown\obj\Debug\WFormMarkDown.FunctionForm.DirectoryCreate.resources
+D:\NET\projects\TSolution\WFormMarkDown\obj\Debug\WFormMarkDown.FunctionForm.FileCreate.resources
+D:\NET\projects\TSolution\WFormMarkDown\obj\Debug\WFormMarkDown.FunctionForm.SiteBaseSettings.resources
+D:\NET\projects\TSolution\WFormMarkDown\obj\Debug\WFormMarkDown.FunctionForm.SiteRefSettings.resources
