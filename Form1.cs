@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using WFormMarkDown.Common;
+using WFormMarkDown.Enums;
+using WFormMarkDown.Entitys;
 
 namespace WFormMarkDown
 {
@@ -42,7 +44,8 @@ namespace WFormMarkDown
             {
                 this.leftTree = new Common.LeftTree(WFormMarkDown.Program.GetMarkDownDir(), WFormMarkDown.Program.GetDataDir());
             }
-            else {
+            else
+            {
                 this.leftTree.LeftTreeRef();
             }
             leftTree.RenderTree(treeView1);
@@ -62,12 +65,12 @@ namespace WFormMarkDown
         {
             try
             {
-                //Common.FileEntity entity = (Common.FileEntity)((TreeView)sender).Tag;
                 if (this.treeView1.SelectedNode.Nodes.Count > 0)
                     return;
-                Common.FileEntity entity = (Common.FileEntity)this.treeView1.SelectedNode.Tag;
+                FileEntity entity = (FileEntity)this.treeView1.SelectedNode.Tag;
+                if (entity.GetFileType() == FileType.Directory)
+                    return;
                 this.textBox1.Text = File.ReadAllText(entity.GetFullPath());
-
             }
             catch (Exception ex)
             {
@@ -75,10 +78,13 @@ namespace WFormMarkDown
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            //MarkdownDeep.Markdown mkd = new MarkdownDeep.Markdown();
-
             MarkdownSharp.Markdown md = new MarkdownSharp.Markdown();
             string str = md.Transform(textBox1.Text);
             Console.WriteLine(str);
@@ -94,9 +100,11 @@ namespace WFormMarkDown
         /// <param name="e"></param>
         private void File_BaseDir_toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FunctionForm.BaseDirectory bd = new FunctionForm.BaseDirectory();
-            bd.SetBaseDir("");
-            bd.Show();
+            //FunctionForm.BaseDirectory bd = new FunctionForm.BaseDirectory();
+            //bd.SetBaseDir("");
+            //bd.Show();
+            MessageBox.Show("暂时不支持自定义主目录。。。");
+            return;
         }
 
         /// <summary>
@@ -160,7 +168,10 @@ namespace WFormMarkDown
         /// <param name="e"></param>
         private void Build_toolStripMenuItem3_Click(object sender, EventArgs e)
         {
+            MarkDownCompile mdc = new MarkDownCompile();
+            int num = mdc.Compile(this.leftTree.GetFileEntityLsit());
 
+            MessageBox.Show("成功编译" + num + "个 MarkDown 文件");
         }
 
         /// <summary>
@@ -172,7 +183,7 @@ namespace WFormMarkDown
         {
             string blogDir = Program.GetBlogDir().Replace("\\", "/");
             string gitpwd = Program.GetConfig().Deployment.deploy;
-            if (string.IsNullOrWhiteSpace(gitpwd)||File.Exists(gitpwd))
+            if (string.IsNullOrWhiteSpace(gitpwd) || File.Exists(gitpwd))
             {
                 MessageBox.Show("Git Bush 路径错误！");
                 return;
@@ -256,7 +267,41 @@ namespace WFormMarkDown
 
         }
 
+        /// <summary>
+        /// 删除文件或者目录
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void File_Delete_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode == null)
+            {
+                MessageBox.Show("请选择要删除的目录或文件");
+            }
+            else
+            {
+                FileEntity fe = (FileEntity)treeView1.SelectedNode.Tag;
+                if (fe.GetFileType() == FileType.File)
+                {
+                    if (MessageBox.Show(this, "确认要删除文件：" + fe.GetName() + " 吗？", "警告", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        File.Delete(fe.GetFullPath());
+                        InitLeftTree();
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show(this, "确认要删除目录：" + fe.GetName() + " 和它包含的文件吗？", "警告", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Directory.Delete(fe.GetFullPath(), true);
+                        InitLeftTree();
+                    }
+                }
+            }
+
+        }
+
         #endregion
-         
+
     }
 }

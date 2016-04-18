@@ -83,8 +83,10 @@
     <Compile Include="Entitys\BlogView.cs" />
     <Compile Include="Entitys\ConfigEntity.cs" />
     <Compile Include="Entitys\DeploymentEntity.cs" />
+    <Compile Include="Entitys\FileEntity.cs" />
     <Compile Include="Entitys\PaginationEntity.cs" />
     <Compile Include="Entitys\SiteEntity.cs" />
+    <Compile Include="Enums\FileType.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

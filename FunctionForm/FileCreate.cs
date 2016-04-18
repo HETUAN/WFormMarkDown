@@ -29,8 +29,13 @@ namespace WFormMarkDown.FunctionForm
         {
             if (Directory.Exists(baseDir))
             {
+                if (string.IsNullOrWhiteSpace(tBox_FileName.Text))
+                {
+                    MessageBox.Show("请输入文件名");
+                    return;
+                }
                 string filepath = Path.Combine(baseDir,tBox_FileName.Text.Trim().Replace(' ','_'));
-                if (filepath.Substring(filepath.Length-2) != ".md")
+                if (filepath.Substring(filepath.Length - 2).ToUpper() != ".MD")
                 {
                     filepath += ".md";
                 }

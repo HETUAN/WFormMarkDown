@@ -126,7 +126,7 @@
             // 
             this.File_Create_ToolStripMenuItem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.File_Create_ToolStripMenuItem2.Name = "File_Create_ToolStripMenuItem2";
-            this.File_Create_ToolStripMenuItem2.Size = new System.Drawing.Size(124, 22);
+            this.File_Create_ToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.File_Create_ToolStripMenuItem2.Text = "创建文件";
             this.File_Create_ToolStripMenuItem2.Click += new System.EventHandler(this.File_Create_ToolStripMenuItem2_Click);
             // 
@@ -134,14 +134,15 @@
             // 
             this.File_Delete_ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.File_Delete_ToolStripMenuItem.Name = "File_Delete_ToolStripMenuItem";
-            this.File_Delete_ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.File_Delete_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.File_Delete_ToolStripMenuItem.Text = "删除";
+            this.File_Delete_ToolStripMenuItem.Click += new System.EventHandler(this.File_Delete_ToolStripMenuItem_Click);
             // 
             // File_BaseDir_toolStripMenuItem1
             // 
             this.File_BaseDir_toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.File_BaseDir_toolStripMenuItem1.Name = "File_BaseDir_toolStripMenuItem1";
-            this.File_BaseDir_toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.File_BaseDir_toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.File_BaseDir_toolStripMenuItem1.Text = "主目录";
             this.File_BaseDir_toolStripMenuItem1.Click += new System.EventHandler(this.File_BaseDir_toolStripMenuItem1_Click);
             // 
@@ -149,7 +150,7 @@
             // 
             this.Dir_Create_toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.Dir_Create_toolStripMenuItem1.Name = "Dir_Create_toolStripMenuItem1";
-            this.Dir_Create_toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.Dir_Create_toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.Dir_Create_toolStripMenuItem1.Text = "创建目录";
             this.Dir_Create_toolStripMenuItem1.Click += new System.EventHandler(this.Dir_Create_toolStripMenuItem1_Click);
             // 
@@ -198,14 +199,14 @@
             // Site_Base_ToolStripMenuItem
             // 
             this.Site_Base_ToolStripMenuItem.Name = "Site_Base_ToolStripMenuItem";
-            this.Site_Base_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Site_Base_ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.Site_Base_ToolStripMenuItem.Text = "基础";
             this.Site_Base_ToolStripMenuItem.Click += new System.EventHandler(this.Site_Base_ToolStripMenuItem_Click);
             // 
             // Site_Ref_ToolStripMenuItem
             // 
             this.Site_Ref_ToolStripMenuItem.Name = "Site_Ref_ToolStripMenuItem";
-            this.Site_Ref_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Site_Ref_ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.Site_Ref_ToolStripMenuItem.Text = "引用";
             this.Site_Ref_ToolStripMenuItem.Click += new System.EventHandler(this.Site_Ref_ToolStripMenuItem_Click);
             // 
@@ -224,26 +225,26 @@
             // Deployment_Config_ToolStripMenuItem
             // 
             this.Deployment_Config_ToolStripMenuItem.Name = "Deployment_Config_ToolStripMenuItem";
-            this.Deployment_Config_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Deployment_Config_ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.Deployment_Config_ToolStripMenuItem.Text = "配置";
             this.Deployment_Config_ToolStripMenuItem.Click += new System.EventHandler(this.Deployment_Config_ToolStripMenuItem_Click);
             // 
             // 初始化ToolStripMenuItem
             // 
             this.初始化ToolStripMenuItem.Name = "初始化ToolStripMenuItem";
-            this.初始化ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.初始化ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.初始化ToolStripMenuItem.Text = "初始化";
             // 
             // 推送ToolStripMenuItem
             // 
             this.推送ToolStripMenuItem.Name = "推送ToolStripMenuItem";
-            this.推送ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.推送ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.推送ToolStripMenuItem.Text = "提交修改";
             // 
             // 推送ToolStripMenuItem1
             // 
             this.推送ToolStripMenuItem1.Name = "推送ToolStripMenuItem1";
-            this.推送ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.推送ToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
             this.推送ToolStripMenuItem1.Text = "推送";
             // 
             // panel2

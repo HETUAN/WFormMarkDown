@@ -1,5 +1,4 @@
 E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\WFormMarkDown.exe.config
-E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.csprojResolveAssemblyReference.cache
 E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.Form1.resources
 E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.Form2.resources
 E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.FunctionForm.BaseDirectory.resources
@@ -24,3 +23,4 @@ E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.FunctionForm.SiteRef
 E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.FunctionForm.DeploymentSettings.resources
 E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.FunctionForm.FileCreate.resources
 E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.FunctionForm.DirectoryCreate.resources
+E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.csprojResolveAssemblyReference.cache

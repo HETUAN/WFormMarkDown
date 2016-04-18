@@ -25,6 +25,11 @@ namespace WFormMarkDown.FunctionForm
 
         private void btn_Create_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(tBox_DirName.Text))
+            {
+                MessageBox.Show("请输入文件名");
+                return;
+            }
             string dirname = Path.Combine(this.baseDir, tBox_DirName.Text.Trim().Replace("\\", ""));
             if (Directory.Exists(dirname))
             {
