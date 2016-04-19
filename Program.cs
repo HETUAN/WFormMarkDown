@@ -150,6 +150,30 @@ namespace WFormMarkDown
                 {
                     Directory.CreateDirectory(blogDir);
                 }
+
+                string stylesDir = Path.Combine(blogDir, "Styles");
+                if (!Directory.Exists(stylesDir))
+                    Directory.CreateDirectory(stylesDir);
+
+                string scriptsDir = Path.Combine(blogDir, "Scripts");
+                if (!Directory.Exists(scriptsDir))
+                    Directory.CreateDirectory(scriptsDir);
+
+                string baseStyle = Path.Combine(blogDir, "Styles", "style.css");
+                if (!File.Exists(baseStyle))
+                {
+                    //如果不存在 则从嵌入资源内读取 BlockSet.xml 
+                    Assembly asm = Assembly.GetExecutingAssembly();//读取嵌入式资源
+                    Stream sm = asm.GetManifestResourceStream("WFormMarkDown.DLL.web.style.css");
+                    StreamReader sr = new StreamReader(sm);
+                    string baseStyleContent = sr.ReadToEnd();
+                    sr.Close();
+                    using (StreamWriter sw = File.CreateText(baseStyle))
+                    {
+                        sw.Write(baseStyleContent);
+                        sw.Close();
+                    }
+                }
                 return true;
             }
             catch (Exception ex)

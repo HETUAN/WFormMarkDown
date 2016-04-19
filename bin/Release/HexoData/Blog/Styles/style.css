@@ -1,0 +1,93 @@
+* {
+    margin: 0px;
+    padding: 0px;
+	font-family: 微软雅黑;
+	font-size: 12px;
+}
+a{
+	text-decoration: none;
+}
+body{
+	background-color: #E8E7E4;
+}
+.head{
+	width: 960px;
+	height: 3px;
+	background-color: #EE3424;
+	margin: 0px auto;
+}
+.content{
+	width: 960px;
+	background-color: #FFFFFF;
+	overflow: hidden;
+	margin: 0px auto;
+}
+.user{
+	width: 200px;
+	background-color: #FFFFFF;/**/
+	height: 200px;
+	float: left;
+}
+.usermsg{
+	margin: 10px;
+	border-right: 0px solid #EE3424;
+	border-bottom: 0px solid #EE3424;
+	text-align: center;
+	background-color: #E8E7E4; 
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.usermsg img{
+	width: 100px;
+	height: 100px;
+	/*margin-left: 25px;margin-top: 20px;*/
+}
+.username {
+	font-size: 14px;
+	text-decoration: none;
+	color: black;
+}
+.count{
+
+}
+.count span{
+	margin-right: 3px; 
+	max-width: 30px;
+}
+.count span a{
+	text-decoration: none;
+	color: black;
+}
+.count span a:hover{
+	text-decoration:underline; 
+}
+.blog{   
+	width: 760px;
+	margin-left: 200px; 
+	min-height: 300px; 
+	background-color: #FFFFFF;
+	clear: right; 
+	overflow: hidden;
+}
+.blogcontent{
+	width: 750px; 
+	margin-top: 10px;
+	margin-left: 5px;
+	border-right: 0px solid #EE3424;
+	border-bottom: 0px solid #EE3424;
+	background-color: #E8E7E4;
+}
+
+.blogcontent article{
+padding: 10px; 
+}
+
+.foot{
+	margin: 0px auto;
+	width: 960px;
+	height: 30px;
+	font-size: 12px;
+	line-height: 24px;
+	border-top: 1px solid #EE3424;
+	background-color: #FFFFFF;
+}

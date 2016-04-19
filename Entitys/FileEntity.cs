@@ -89,11 +89,19 @@ namespace WFormMarkDown.Entitys
             }
         }
 
+        /// <summary>
+        /// Id
+        /// </summary>
+        /// <returns></returns>
         public int GetId()
         {
             return this.id;
         }
 
+        /// <summary>
+        /// 父节点ID
+        /// </summary>
+        /// <returns></returns>
         public int GetParentId()
         {
             return this.pid;
@@ -108,6 +116,10 @@ namespace WFormMarkDown.Entitys
             return this.name;
         }
 
+        /// <summary>
+        /// 获取文件的全路径
+        /// </summary>
+        /// <returns></returns>
         public string GetFullPath()
         {
             return this.path;
