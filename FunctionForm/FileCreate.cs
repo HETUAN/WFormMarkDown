@@ -34,7 +34,8 @@ namespace WFormMarkDown.FunctionForm
                     MessageBox.Show("请输入文件名");
                     return;
                 }
-                string filepath = Path.Combine(baseDir,tBox_FileName.Text.Trim().Replace(' ','_'));
+                string fileName = tBox_FileName.Text.Trim().Replace(' ', '_');
+                string filepath = Path.Combine(baseDir, fileName);
                 if (filepath.Substring(filepath.Length - 2).ToUpper() != ".MD")
                 {
                     filepath += ".md";
@@ -45,12 +46,29 @@ namespace WFormMarkDown.FunctionForm
                     return;
                 }
                 StreamWriter sw = File.CreateText(filepath);
-                sw.Write("Hello World!");
+                Entitys.BlogHead blogHead = new Entitys.BlogHead();
+                blogHead.title = fileName;
+                StringBuilder headStr = new StringBuilder();
+                headStr.AppendLine("---StartBlogHead");
+                headStr.AppendLine("{");
+                headStr.AppendLine(string.Format("    \"title\": \"{0}\",", fileName));
+                headStr.AppendLine("    \"date\": \"0001-01-01T00:00:00\",");
+                headStr.AppendLine("    \"type\": \"\",");
+                headStr.AppendLine("    \"tags\": [],");
+                headStr.AppendLine("    \"photos\": [],");
+                headStr.AppendLine("    \"description\": \"\"");
+                headStr.AppendLine("}");
+                headStr.AppendLine("---EndBlogHead");
+                headStr.AppendLine("");
+                headStr.AppendLine("##Hello World!");
+
+                sw.Write(headStr.ToString());
                 sw.Close();
                 DelLeftTreeEvent();
                 this.Close();
             }
-            else {
+            else
+            {
                 MessageBox.Show("请重新选择文件目录！");
             }
         }

@@ -79,6 +79,7 @@
     <Compile Include="Common\RunInLocal.cs" />
     <Compile Include="Common\Startup.cs" />
     <Compile Include="Common\StaticData.cs" />
+    <Compile Include="Entitys\BlogHead.cs" />
     <Compile Include="Entitys\BlogListView.cs" />
     <Compile Include="Entitys\BlogView.cs" />
     <Compile Include="Entitys\ConfigEntity.cs" />

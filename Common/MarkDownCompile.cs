@@ -140,6 +140,8 @@ namespace WFormMarkDown.Common
             int count = 0;
             foreach (FileEntity item in blogViewLiat)
             {
+                if (item.GetName() == "README.MD")
+                    continue;
                 if (item.GetFileType() == FileType.Directory)
                 {
                     if (item.GetList() != null && item.GetList().Count > 0)
@@ -151,7 +153,8 @@ namespace WFormMarkDown.Common
 
                 DateTime createTime = File.GetCreationTime(item.GetFullPath());
                 string mdStr = FileHelper.ReadFile(item.GetFullPath());
-                string mdhead = mdStr.Substring(0, mdStr.IndexOf("#endHead"));
+                string mdhead = mdStr.Substring(mdStr.IndexOf("---StartBlogHead") + 16, mdStr.IndexOf("---EndBlogHead") -16);
+                Entitys.BlogHead blogHead = Newtonsoft.Json.JsonConvert.DeserializeObject<Entitys.BlogHead>(mdhead);
 
                 string relativePath = Path.Combine(new string[] { createTime.Year.ToString(), createTime.Month.ToString(), createTime.Day.ToString(), item.GetName() });
                 string dirStr = Path.Combine(Program.GetBlogDir(), relativePath);
