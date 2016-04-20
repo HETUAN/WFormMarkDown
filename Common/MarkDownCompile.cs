@@ -179,8 +179,14 @@ namespace WFormMarkDown.Common
 
                 relativeUrl = relativeHead + relativeUrl;
 
+                StringBuilder blogFootStr = new StringBuilder();
+                blogFootStr.AppendLine("");
+                blogFootStr.AppendLine("<p>");
+                blogFootStr.AppendLine(string.Format("<a title =\"pre\" class=\"prev-article\" href=\"{0}\" > 上一篇</a>","#"));
+                blogFootStr.AppendLine(string.Format("<a title=\"next\" class=\"next-article\" href=\"#{0}\">下一篇</a>","#"));
+                blogFootStr.AppendLine("</p>"); 
                 // 将md文件转换成html
-                string articleStr = string.Format("<article>{0}</article>", MarkDownHelper.ConvertToHtml(mdBody));
+                string articleStr = string.Format("<article><h1 class=\"article-title\">{0}</h1>\n\r\n\r{1}\n\r\n\r{2}</article>", blogHead.title, MarkDownHelper.ConvertToHtml(mdBody), blogFootStr.ToString());
 
                 // 创建html文件存放路径
                 if (!Directory.Exists(dirStr))

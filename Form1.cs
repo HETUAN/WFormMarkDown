@@ -127,11 +127,13 @@ namespace WFormMarkDown
             {
                 Common.ProcessHelper.RunOwinWebServer();
                 Program.SetIsRunInLocal(true);
+                this.RunLocal_toolStripMenuItem2.Text = "停止";
             }
             else
             {
                 Common.ProcessHelper.StopOwinWebServer();
                 Program.SetIsRunInLocal(false);
+                this.RunLocal_toolStripMenuItem2.Text = "运行";
             }
             //if (Program.GetIsRunInLocal())
             //{
@@ -319,5 +321,65 @@ namespace WFormMarkDown
 
         }
 
+        private void Git_Init_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string blogDir = Program.GetBlogDir().Replace("\\", "/");
+            string gitpwd = Program.GetConfig().Deployment.deploy;
+            if (string.IsNullOrWhiteSpace(gitpwd) || !File.Exists(gitpwd))
+            {
+                MessageBox.Show("Git Bush 路径错误！");
+                return;
+            }
+            Common.GitHelper git = new Common.GitHelper(blogDir);
+            if (git.Init(blogDir)&&git.Remote(blogDir,Program.GetConfig().Deployment.repository, Program.GetConfig().Deployment.username, Program.GetConfig().Deployment.password))
+            {
+                MessageBox.Show("初始化成功!");
+            }
+            else
+            {
+                MessageBox.Show("初始化失败!");
+            }
+
+        }
+
+        private void Git_Commit_ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string blogDir = Program.GetBlogDir().Replace("\\", "/");
+            string gitpwd = Program.GetConfig().Deployment.deploy;
+            if (string.IsNullOrWhiteSpace(gitpwd) || !File.Exists(gitpwd))
+            {
+                MessageBox.Show("Git Bush 路径错误！");
+                return;
+            }
+            Common.GitHelper git = new Common.GitHelper(blogDir);
+            if (git.Add(blogDir) && git.Commit(blogDir, "commit" + DateTime.Now.ToString()))
+            {
+                MessageBox.Show("提交成功!");
+            }
+            else
+            {
+                MessageBox.Show("提交失败!");
+            }
+        }
+
+        private void Git_Push_ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string blogDir = Program.GetBlogDir().Replace("\\", "/");
+            string gitpwd = Program.GetConfig().Deployment.deploy;
+            if (string.IsNullOrWhiteSpace(gitpwd) || !File.Exists(gitpwd))
+            {
+                MessageBox.Show("Git Bush 路径错误！");
+                return;
+            }
+            Common.GitHelper git = new Common.GitHelper(blogDir);
+            if (git.Push(blogDir))
+            {
+                MessageBox.Show("推送成功!");
+            }
+            else
+            {
+                MessageBox.Show("推送失败!");
+            }
+        }
     }
 }
