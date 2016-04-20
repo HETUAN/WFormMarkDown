@@ -126,7 +126,7 @@
             // 
             this.File_Create_ToolStripMenuItem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.File_Create_ToolStripMenuItem2.Name = "File_Create_ToolStripMenuItem2";
-            this.File_Create_ToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.File_Create_ToolStripMenuItem2.Size = new System.Drawing.Size(124, 22);
             this.File_Create_ToolStripMenuItem2.Text = "创建文件";
             this.File_Create_ToolStripMenuItem2.Click += new System.EventHandler(this.File_Create_ToolStripMenuItem2_Click);
             // 
@@ -134,7 +134,7 @@
             // 
             this.File_Delete_ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.File_Delete_ToolStripMenuItem.Name = "File_Delete_ToolStripMenuItem";
-            this.File_Delete_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.File_Delete_ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.File_Delete_ToolStripMenuItem.Text = "删除";
             this.File_Delete_ToolStripMenuItem.Click += new System.EventHandler(this.File_Delete_ToolStripMenuItem_Click);
             // 
@@ -142,7 +142,7 @@
             // 
             this.File_BaseDir_toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.File_BaseDir_toolStripMenuItem1.Name = "File_BaseDir_toolStripMenuItem1";
-            this.File_BaseDir_toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.File_BaseDir_toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
             this.File_BaseDir_toolStripMenuItem1.Text = "主目录";
             this.File_BaseDir_toolStripMenuItem1.Click += new System.EventHandler(this.File_BaseDir_toolStripMenuItem1_Click);
             // 
@@ -150,7 +150,7 @@
             // 
             this.Dir_Create_toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.Dir_Create_toolStripMenuItem1.Name = "Dir_Create_toolStripMenuItem1";
-            this.Dir_Create_toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.Dir_Create_toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
             this.Dir_Create_toolStripMenuItem1.Text = "创建目录";
             this.Dir_Create_toolStripMenuItem1.Click += new System.EventHandler(this.Dir_Create_toolStripMenuItem1_Click);
             // 
@@ -344,6 +344,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

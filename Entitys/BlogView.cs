@@ -36,7 +36,7 @@ namespace WFormMarkDown.Entitys
         /// <summary>
         /// 文章标题
         /// </summary>
-        public string tag { get; set; }
+        public List<string> tags { get; set; }
 
         /// <summary>
         /// 文章路径
@@ -61,7 +61,7 @@ namespace WFormMarkDown.Entitys
         /// <summary>
         /// 显示图片
         /// </summary>
-        public string imgimgurl { get; set; }
+        public List<string> imgurls { get; set; }
 
         /// <summary>
         /// 是否修改

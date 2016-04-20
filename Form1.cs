@@ -303,5 +303,21 @@ namespace WFormMarkDown
 
         #endregion
 
+        /// <summary>
+        /// 主窗体关闭时事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // 判断本地WebServer是否正在运行如果正在运行先关闭
+            if (Program.GetIsRunInLocal())
+            { 
+                Common.ProcessHelper.StopOwinWebServer();
+                Program.SetIsRunInLocal(false);
+            }
+
+        }
+
     }
 }

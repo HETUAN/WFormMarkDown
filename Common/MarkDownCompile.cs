@@ -151,32 +151,57 @@ namespace WFormMarkDown.Common
                     continue;
                 }
 
+                // md文件创建日期
                 DateTime createTime = File.GetCreationTime(item.GetFullPath());
+
+                // 获取md文件内容
                 string mdStr = FileHelper.ReadFile(item.GetFullPath());
-                string mdhead = mdStr.Substring(mdStr.IndexOf("---StartBlogHead") + 16, mdStr.IndexOf("---EndBlogHead") -16);
+
+                // 获取blog头部的配置
+                string mdhead = mdStr.Substring(mdStr.IndexOf("---StartBlogHead") + 16, mdStr.IndexOf("---EndBlogHead") - 16);
                 Entitys.BlogHead blogHead = Newtonsoft.Json.JsonConvert.DeserializeObject<Entitys.BlogHead>(mdhead);
 
+                // 获取blog内容
+                string mdBody = mdStr.Substring(mdStr.IndexOf("---EndBlogHead") + 14);
+
+                // 根据md文件创建日期获取html文件创建路径
                 string relativePath = Path.Combine(new string[] { createTime.Year.ToString(), createTime.Month.ToString(), createTime.Day.ToString(), item.GetName() });
                 string dirStr = Path.Combine(Program.GetBlogDir(), relativePath);
-                int deep = relativePath.Count(c => c == '\\') + 1;
-                string relativeUrl = "" + relativePath.Replace("\\", "/");
-                for (int i = 0; i < deep; i++)
-                    relativeUrl = "../" + relativeUrl;
 
-                string articleStr = string.Format("<article>{0}</article>", MarkDownHelper.ConvertToHtml(mdStr));
+                // html 文件的所在深度
+                int deep = relativePath.Count(c => c == '\\') + 1;
+
+                // 获取html文件的相对路径
+                string relativeUrl = "" + relativePath.Replace("\\", "/");
+                string relativeHead = "";
+                for (int i = 0; i < deep; i++)
+                    relativeHead += "../";
+
+                relativeUrl = relativeHead + relativeUrl;
+
+                // 将md文件转换成html
+                string articleStr = string.Format("<article>{0}</article>", MarkDownHelper.ConvertToHtml(mdBody));
+
+                // 创建html文件存放路径
                 if (!Directory.Exists(dirStr))
                     Directory.CreateDirectory(dirStr);
+
+                // html文件路径
                 string pathStr = Path.Combine(dirStr, "index.html");
-                string styleRef = "\n\r<link rel=\"stylesheet\" type=\"text/css\" href=\"../../../../Styles/style.css\" />";
+
+                //样式文件的引用 todo:处理本地文件和非本地文件非关系
+                string styleRef = "\n\r<link rel=\"stylesheet\" type=\"text/css\" href=\"" + relativeHead + "Styles/style.css\" />";
+                styleRef = string.Join("\r\n", Program.GetConfig().Site.headref.Where(str => !str.Contains("href=\"http://") & !str.Contains("href=\"https://") & !str.Contains("src=\"http://") & !str.Contains("src=\"https://"))).Replace("href=\"", "href=\"" + relativeHead);
+                styleRef += string.Join("\r\n", Program.GetConfig().Site.headref.Where(str => str.Contains("href=\"http://") || str.Contains("href=\"https://") || str.Contains("src=\"http://") || str.Contains("src=\"https://")));
                 if (FileHelper.WriteFile(string.Format(htmlModel, headStr + styleRef, articleStr), pathStr))
                 {
                     count++;
-
                     BlogView blogView = new BlogView();
-                    blogView.title = item.GetName();  //todo: edit
+                    blogView.tags = new List<string>();
+                    blogView.title = blogHead.title;  //todo: edit
                     blogView.edittime = DateTime.Now;
                     blogView.createtime = createTime;
-                    blogView.describe = "描述";
+                    blogView.describe = blogHead.description;
 
                     // 计算HashCode
                     var hash = System.Security.Cryptography.HashAlgorithm.Create();
@@ -186,9 +211,10 @@ namespace WFormMarkDown.Common
                     blogView.hashcode = string.Join("-", bts);
                     blogView.id = item.GetId();
                     blogView.num = item.GetId();
-                    blogView.tag = "Tag";
-                    blogView.type = "Type";
+                    blogView.tags = blogHead.tags;
+                    blogView.type = blogHead.type;
                     blogView.url = relativeUrl;
+                    blogView.imgurls = blogHead.photos;
                     this.blogListView.bloglist.Add(blogView);
 
                     indexHtml.AppendLine("");
@@ -196,14 +222,17 @@ namespace WFormMarkDown.Common
                     indexHtml.AppendLine(string.Format("    <a title=\"{0}\" target=\"_self\" href=\"{1}\\\">", blogView.title, relativeUrl.Replace("../", "")));
                     indexHtml.AppendLine(string.Format("        <h3>{0}</h3>", blogView.title));
                     indexHtml.AppendLine(string.Format("        <h4>{0}</h4>", blogView.describe));
-                    if (!string.IsNullOrWhiteSpace(blogView.imgimgurl))
-                        indexHtml.AppendLine(string.Format("        <img alt=\"{0}\" src=\"{1}\" />", blogView.title, blogView.imgimgurl));
+                    foreach (string imgurl in blogView.imgurls)
+                    {
+                        indexHtml.AppendLine(string.Format("        <img alt=\"{0}\" src=\"{1}\" />", blogView.title, imgurl));
+                    }
                     indexHtml.AppendLine("    </a>");
                     indexHtml.AppendLine("</p>");
                     if (!typeList.Contains(blogView.type))
                         typeList.Add(blogView.type);
-                    if (!tagList.Contains(blogView.tag))
-                        tagList.Add(blogView.tag);
+                    tagList.Concat(blogView.tags);
+                    //if (!tagList.Concat(blogView.tags))
+                    //    tagList.Add(blogView.tag);
                 }
             }
             return count;
