@@ -156,13 +156,7 @@ namespace WFormMarkDown
                     Entitys.BlogHead blogHead = new Entitys.BlogHead();
                     blogHead.type = "";
                     blogHead.tags = new List<string>();
-                    blogHead.tags.Add("1234");
-                    blogHead.tags.Add("qwer");
-                    blogHead.tags.Add("asd");
-                    blogHead.tags.Add("zxc");
                     blogHead.photos = new List<string>();
-                    blogHead.photos.Add("dsafdfasdfasdfasdf");
-                    blogHead.photos.Add("sadfasdfasdfasdfasd");
                     blogHead.description = "";
                     blogHead.date = DateTime.Now;
                     blogHead.title = "Hello World";
