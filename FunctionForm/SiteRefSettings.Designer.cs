@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_Site_Ref_Save = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btn_Site_Ref_Save = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -44,6 +44,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(456, 33);
             this.panel1.TabIndex = 0;
+            // 
+            // btn_Site_Ref_Save
+            // 
+            this.btn_Site_Ref_Save.Location = new System.Drawing.Point(318, 7);
+            this.btn_Site_Ref_Save.Name = "btn_Site_Ref_Save";
+            this.btn_Site_Ref_Save.Size = new System.Drawing.Size(75, 23);
+            this.btn_Site_Ref_Save.TabIndex = 0;
+            this.btn_Site_Ref_Save.Text = "保存";
+            this.btn_Site_Ref_Save.UseVisualStyleBackColor = true;
+            this.btn_Site_Ref_Save.Click += new System.EventHandler(this.btn_Site_Ref_Save_Click);
             // 
             // panel2
             // 
@@ -64,16 +74,6 @@
             this.textBox1.Size = new System.Drawing.Size(456, 280);
             this.textBox1.TabIndex = 1;
             // 
-            // btn_Site_Ref_Save
-            // 
-            this.btn_Site_Ref_Save.Location = new System.Drawing.Point(318, 7);
-            this.btn_Site_Ref_Save.Name = "btn_Site_Ref_Save";
-            this.btn_Site_Ref_Save.Size = new System.Drawing.Size(75, 23);
-            this.btn_Site_Ref_Save.TabIndex = 0;
-            this.btn_Site_Ref_Save.Text = "保存";
-            this.btn_Site_Ref_Save.UseVisualStyleBackColor = true;
-            this.btn_Site_Ref_Save.Click += new System.EventHandler(this.btn_Site_Ref_Save_Click);
-            // 
             // SiteRefSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -82,7 +82,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "SiteRefSettings";
-            this.Text = "SiteRefSettings";
+            this.Text = "前端引用";
             this.Load += new System.EventHandler(this.SiteRefSettings_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

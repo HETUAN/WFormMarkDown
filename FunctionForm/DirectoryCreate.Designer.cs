@@ -39,6 +39,7 @@
             this.tBox_DirName.Name = "tBox_DirName";
             this.tBox_DirName.Size = new System.Drawing.Size(250, 21);
             this.tBox_DirName.TabIndex = 5;
+            this.tBox_DirName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tBox_DirName_KeyPress);
             // 
             // label1
             // 
@@ -68,7 +69,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_Create);
             this.Name = "DirectoryCreate";
-            this.Text = "DirectoryCreate";
+            this.Text = "新建目录";
+            this.Activated += new System.EventHandler(this.DirectoryCreate_Activated);
+            this.Load += new System.EventHandler(this.DirectoryCreate_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

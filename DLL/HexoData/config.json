@@ -11,7 +11,7 @@
     "headico": "",
     "language": "zh-CN",
     "localport": "8181",
-    "headref": []
+    "headref": ["<link rel=\"stylesheet\" type=\"text/css\" href=\"Styles/style.css\" />"]
   },
   "Deployment": { 
     "deploy": "",

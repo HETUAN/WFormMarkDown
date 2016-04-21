@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WFormMarkDown.Common;
 
 namespace WFormMarkDown.FunctionForm
 {
@@ -47,17 +48,24 @@ namespace WFormMarkDown.FunctionForm
                 }
                 StreamWriter sw = File.CreateText(filepath);
                 Entitys.BlogHead blogHead = new Entitys.BlogHead();
+                blogHead.type = "";
+                blogHead.tags = new List<string>();
                 blogHead.title = fileName;
+                blogHead.photos = new List<string>();
+                blogHead.description = "";
+                blogHead.date = DateTime.Now;
                 StringBuilder headStr = new StringBuilder();
+
                 headStr.AppendLine("---StartBlogHead");
-                headStr.AppendLine("{");
-                headStr.AppendLine(string.Format("    \"title\": \"{0}\",", fileName));
-                headStr.AppendLine("    \"date\": \"0001-01-01T00:00:00\",");
-                headStr.AppendLine("    \"type\": \"\",");
-                headStr.AppendLine("    \"tags\": [],");
-                headStr.AppendLine("    \"photos\": [],");
-                headStr.AppendLine("    \"description\": \"\"");
-                headStr.AppendLine("}");
+                headStr.AppendLine(JsonPrase.PraseToJson(Newtonsoft.Json.JsonConvert.SerializeObject(blogHead)));
+                //headStr.AppendLine("{");
+                //headStr.AppendLine(string.Format("    \"title\": \"{0}\",", fileName));
+                //headStr.AppendLine("    \"date\": \"0001-01-01T00:00:00\",");
+                //headStr.AppendLine("    \"type\": \"\",");
+                //headStr.AppendLine("    \"tags\": [],");
+                //headStr.AppendLine("    \"photos\": [],");
+                //headStr.AppendLine("    \"description\": \"\"");
+                //headStr.AppendLine("}");
                 headStr.AppendLine("---EndBlogHead");
                 headStr.AppendLine("");
                 headStr.AppendLine("##Hello World!");
@@ -70,6 +78,24 @@ namespace WFormMarkDown.FunctionForm
             else
             {
                 MessageBox.Show("请重新选择文件目录！");
+            }
+        }
+
+        private void FileCreate_Load(object sender, EventArgs e)
+        {
+            this.tBox_FileName.Focus();
+        }
+
+        private void FileCreate_Activated(object sender, EventArgs e)
+        {
+            this.tBox_FileName.Focus();
+        }
+
+        private void tBox_FileName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                btn_Create_Click(sender, e);
             }
         }
     }

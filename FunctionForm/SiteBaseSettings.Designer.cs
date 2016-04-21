@@ -168,7 +168,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "SiteBaseSettings";
-            this.Text = "SiteBaseSettings";
+            this.Text = "博客信息";
             this.Load += new System.EventHandler(this.SiteBaseSettings_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

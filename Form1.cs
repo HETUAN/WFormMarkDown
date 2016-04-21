@@ -17,6 +17,9 @@ namespace WFormMarkDown
     public partial class Form1 : Form
     {
         public Common.LeftTree leftTree;
+
+        public bool IsTextBoxChanged = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -71,6 +74,7 @@ namespace WFormMarkDown
                 if (entity.GetFileType() == FileType.Directory)
                     return;
                 this.textBox1.Text = File.ReadAllText(entity.GetFullPath());
+                this.textBox1.Tag = entity.GetFullPath();
             }
             catch (Exception ex)
             {
@@ -85,9 +89,14 @@ namespace WFormMarkDown
         /// <param name="e"></param>
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            MarkdownSharp.Markdown md = new MarkdownSharp.Markdown();
-            string str = md.Transform(textBox1.Text);
-            Console.WriteLine(str);
+            //MarkdownSharp.Markdown md = new MarkdownSharp.Markdown();
+            //string str = md.Transform(textBox1.Text);
+            //Console.WriteLine(str);
+            if (!IsTextBoxChanged)
+            {
+                IsTextBoxChanged = true;
+                this.Text += "*";
+            }
         }
 
         #region 顶部按钮事件
@@ -233,14 +242,21 @@ namespace WFormMarkDown
         private void File_Create_ToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             string curDir;
-            if (treeView1.SelectedNode == null)
+            if (treeView1.Focused)
             {
-                curDir = WFormMarkDown.Program.GetConfig().BlogDirectory;
+                if (treeView1.SelectedNode == null)
+                {
+                    curDir = WFormMarkDown.Program.GetConfig().BlogDirectory;
+                }
+                else
+                {
+                    FileEntity fe = (FileEntity)treeView1.SelectedNode.Tag;
+                    curDir = fe.GetFileType() == FileType.File ? Directory.GetParent(fe.GetFullPath()).FullName : fe.GetFullPath();
+                }
             }
             else
             {
-                FileEntity fe = (FileEntity)treeView1.SelectedNode.Tag;
-                curDir = fe.GetFileType() == FileType.File ? Directory.GetParent(fe.GetFullPath()).FullName : fe.GetFullPath();
+                curDir = WFormMarkDown.Program.GetConfig().BlogDirectory;
             }
 
             FunctionForm.FileCreate fc = new FunctionForm.FileCreate(curDir);
@@ -251,14 +267,21 @@ namespace WFormMarkDown
         private void Dir_Create_toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             string curDir;
-            if (treeView1.SelectedNode == null)
+            if (treeView1.Focused)
             {
-                curDir = WFormMarkDown.Program.GetConfig().BlogDirectory;
+                if (treeView1.SelectedNode == null)
+                {
+                    curDir = WFormMarkDown.Program.GetConfig().BlogDirectory;
+                }
+                else
+                {
+                    FileEntity fe = (FileEntity)treeView1.SelectedNode.Tag;
+                    curDir = fe.GetFileType() == FileType.File ? Directory.GetParent(fe.GetFullPath()).FullName : fe.GetFullPath();
+                }
             }
             else
             {
-                FileEntity fe = (FileEntity)treeView1.SelectedNode.Tag;
-                curDir = fe.GetFileType() == FileType.File ? Directory.GetParent(fe.GetFullPath()).FullName : fe.GetFullPath();
+                curDir = WFormMarkDown.Program.GetConfig().BlogDirectory;
             }
 
             FunctionForm.DirectoryCreate dc = new FunctionForm.DirectoryCreate(curDir);
@@ -312,11 +335,29 @@ namespace WFormMarkDown
         {
             // 判断本地WebServer是否正在运行如果正在运行先关闭
             if (Program.GetIsRunInLocal())
-            { 
+            {
                 Common.ProcessHelper.StopOwinWebServer();
                 Program.SetIsRunInLocal(false);
             }
 
+        }
+
+        private void File_Save_toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string path = this.textBox1.Tag.ToString();
+            if (this.IsTextBoxChanged && FileHelper.WriteFile(this.textBox1.Text, path))
+            {
+                this.Text = this.Text.Substring(0, this.Text.Length - 1);
+                //MessageBox.Show("文件保存成功！");
+            }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                File_Save_toolStripMenuItem1_Click(sender, e);
+            }
         }
 
     }

@@ -56,6 +56,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.File_Save_toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -102,31 +103,33 @@
             this.User_ToolStripMenuItem.Name = "User_ToolStripMenuItem";
             this.User_ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.User_ToolStripMenuItem.Text = "用户";
+            this.User_ToolStripMenuItem.Visible = false;
             // 
             // User_Msg_ToolStripMenuItem
             // 
             this.User_Msg_ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.User_Msg_ToolStripMenuItem.Name = "User_Msg_ToolStripMenuItem";
-            this.User_Msg_ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.User_Msg_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.User_Msg_ToolStripMenuItem.Text = "编辑";
             // 
             // File_ToolStripMenuItem1
             // 
             this.File_ToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.File_Create_ToolStripMenuItem2,
+            this.File_Save_toolStripMenuItem1,
+            this.Dir_Create_toolStripMenuItem1,
             this.File_Delete_ToolStripMenuItem,
-            this.File_BaseDir_toolStripMenuItem1,
-            this.Dir_Create_toolStripMenuItem1});
+            this.File_BaseDir_toolStripMenuItem1});
             this.File_ToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.File_ToolStripMenuItem1.Name = "File_ToolStripMenuItem1";
-            this.File_ToolStripMenuItem1.Size = new System.Drawing.Size(44, 21);
-            this.File_ToolStripMenuItem1.Text = "文件";
+            this.File_ToolStripMenuItem1.Size = new System.Drawing.Size(68, 21);
+            this.File_ToolStripMenuItem1.Text = "文件操作";
             // 
             // File_Create_ToolStripMenuItem2
             // 
             this.File_Create_ToolStripMenuItem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.File_Create_ToolStripMenuItem2.Name = "File_Create_ToolStripMenuItem2";
-            this.File_Create_ToolStripMenuItem2.Size = new System.Drawing.Size(124, 22);
+            this.File_Create_ToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.File_Create_ToolStripMenuItem2.Text = "创建文件";
             this.File_Create_ToolStripMenuItem2.Click += new System.EventHandler(this.File_Create_ToolStripMenuItem2_Click);
             // 
@@ -134,7 +137,7 @@
             // 
             this.File_Delete_ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.File_Delete_ToolStripMenuItem.Name = "File_Delete_ToolStripMenuItem";
-            this.File_Delete_ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.File_Delete_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.File_Delete_ToolStripMenuItem.Text = "删除";
             this.File_Delete_ToolStripMenuItem.Click += new System.EventHandler(this.File_Delete_ToolStripMenuItem_Click);
             // 
@@ -142,7 +145,7 @@
             // 
             this.File_BaseDir_toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.File_BaseDir_toolStripMenuItem1.Name = "File_BaseDir_toolStripMenuItem1";
-            this.File_BaseDir_toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.File_BaseDir_toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.File_BaseDir_toolStripMenuItem1.Text = "主目录";
             this.File_BaseDir_toolStripMenuItem1.Click += new System.EventHandler(this.File_BaseDir_toolStripMenuItem1_Click);
             // 
@@ -150,7 +153,7 @@
             // 
             this.Dir_Create_toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.Dir_Create_toolStripMenuItem1.Name = "Dir_Create_toolStripMenuItem1";
-            this.Dir_Create_toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.Dir_Create_toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.Dir_Create_toolStripMenuItem1.Text = "创建目录";
             this.Dir_Create_toolStripMenuItem1.Click += new System.EventHandler(this.Dir_Create_toolStripMenuItem1_Click);
             // 
@@ -158,16 +161,16 @@
             // 
             this.Build_toolStripMenuItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.Build_toolStripMenuItem3.Name = "Build_toolStripMenuItem3";
-            this.Build_toolStripMenuItem3.Size = new System.Drawing.Size(44, 21);
-            this.Build_toolStripMenuItem3.Text = "生成";
+            this.Build_toolStripMenuItem3.Size = new System.Drawing.Size(68, 21);
+            this.Build_toolStripMenuItem3.Text = "生成博客";
             this.Build_toolStripMenuItem3.Click += new System.EventHandler(this.Build_toolStripMenuItem3_Click);
             // 
             // RunLocal_toolStripMenuItem2
             // 
             this.RunLocal_toolStripMenuItem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.RunLocal_toolStripMenuItem2.Name = "RunLocal_toolStripMenuItem2";
-            this.RunLocal_toolStripMenuItem2.Size = new System.Drawing.Size(44, 21);
-            this.RunLocal_toolStripMenuItem2.Text = "运行";
+            this.RunLocal_toolStripMenuItem2.Size = new System.Drawing.Size(68, 21);
+            this.RunLocal_toolStripMenuItem2.Text = "本地运行";
             this.RunLocal_toolStripMenuItem2.Click += new System.EventHandler(this.RUnLocal_toolStripMenuItem2_Click);
             // 
             // Push_toolStripMenuItem1
@@ -176,14 +179,15 @@
             this.Push_toolStripMenuItem1.Name = "Push_toolStripMenuItem1";
             this.Push_toolStripMenuItem1.Size = new System.Drawing.Size(44, 21);
             this.Push_toolStripMenuItem1.Text = "提交";
+            this.Push_toolStripMenuItem1.Visible = false;
             this.Push_toolStripMenuItem1.Click += new System.EventHandler(this.Push_toolStripMenuItem1_Click);
             // 
             // InitGit_toolStripMenuItem1
             // 
             this.InitGit_toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.InitGit_toolStripMenuItem1.Name = "InitGit_toolStripMenuItem1";
-            this.InitGit_toolStripMenuItem1.Size = new System.Drawing.Size(44, 21);
-            this.InitGit_toolStripMenuItem1.Text = "推送";
+            this.InitGit_toolStripMenuItem1.Size = new System.Drawing.Size(68, 21);
+            this.InitGit_toolStripMenuItem1.Text = "提交推送";
             this.InitGit_toolStripMenuItem1.Click += new System.EventHandler(this.InitGit_toolStripMenuItem1_Click);
             // 
             // Site_toolStripMenuItem1
@@ -193,21 +197,21 @@
             this.Site_Ref_ToolStripMenuItem});
             this.Site_toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.Site_toolStripMenuItem1.Name = "Site_toolStripMenuItem1";
-            this.Site_toolStripMenuItem1.Size = new System.Drawing.Size(44, 21);
-            this.Site_toolStripMenuItem1.Text = "网站";
+            this.Site_toolStripMenuItem1.Size = new System.Drawing.Size(68, 21);
+            this.Site_toolStripMenuItem1.Text = "网站配置";
             // 
             // Site_Base_ToolStripMenuItem
             // 
             this.Site_Base_ToolStripMenuItem.Name = "Site_Base_ToolStripMenuItem";
-            this.Site_Base_ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.Site_Base_ToolStripMenuItem.Text = "基础";
+            this.Site_Base_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Site_Base_ToolStripMenuItem.Text = "基础配置";
             this.Site_Base_ToolStripMenuItem.Click += new System.EventHandler(this.Site_Base_ToolStripMenuItem_Click);
             // 
             // Site_Ref_ToolStripMenuItem
             // 
             this.Site_Ref_ToolStripMenuItem.Name = "Site_Ref_ToolStripMenuItem";
-            this.Site_Ref_ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.Site_Ref_ToolStripMenuItem.Text = "引用";
+            this.Site_Ref_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Site_Ref_ToolStripMenuItem.Text = "引用文件";
             this.Site_Ref_ToolStripMenuItem.Click += new System.EventHandler(this.Site_Ref_ToolStripMenuItem_Click);
             // 
             // Deployment_toolStripMenuItem1
@@ -219,14 +223,14 @@
             this.推送ToolStripMenuItem1});
             this.Deployment_toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.Deployment_toolStripMenuItem1.Name = "Deployment_toolStripMenuItem1";
-            this.Deployment_toolStripMenuItem1.Size = new System.Drawing.Size(44, 21);
-            this.Deployment_toolStripMenuItem1.Text = "远程";
+            this.Deployment_toolStripMenuItem1.Size = new System.Drawing.Size(68, 21);
+            this.Deployment_toolStripMenuItem1.Text = "远程配置";
             // 
             // Deployment_Config_ToolStripMenuItem
             // 
             this.Deployment_Config_ToolStripMenuItem.Name = "Deployment_Config_ToolStripMenuItem";
-            this.Deployment_Config_ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.Deployment_Config_ToolStripMenuItem.Text = "配置";
+            this.Deployment_Config_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Deployment_Config_ToolStripMenuItem.Text = "配置文件";
             this.Deployment_Config_ToolStripMenuItem.Click += new System.EventHandler(this.Deployment_Config_ToolStripMenuItem_Click);
             // 
             // 初始化ToolStripMenuItem
@@ -312,6 +316,7 @@
             this.textBox1.Size = new System.Drawing.Size(574, 352);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // panel4
             // 
@@ -331,6 +336,14 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(731, 20);
             this.panel3.TabIndex = 1;
+            // 
+            // File_Save_toolStripMenuItem1
+            // 
+            this.File_Save_toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
+            this.File_Save_toolStripMenuItem1.Name = "File_Save_toolStripMenuItem1";
+            this.File_Save_toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.File_Save_toolStripMenuItem1.Text = "保存文件";
+            this.File_Save_toolStripMenuItem1.Click += new System.EventHandler(this.File_Save_toolStripMenuItem1_Click);
             // 
             // Form1
             // 
@@ -390,6 +403,7 @@
         private System.Windows.Forms.ToolStripMenuItem 推送ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 推送ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem Dir_Create_toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem File_Save_toolStripMenuItem1;
     }
 }
 
