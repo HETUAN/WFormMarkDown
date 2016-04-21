@@ -46,9 +46,9 @@
             this.Site_Ref_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Deployment_toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.Deployment_Config_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.初始化ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.推送ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.推送ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Git_Init_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Git_Commit_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Git_Push_ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -218,9 +218,9 @@
             // 
             this.Deployment_toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Deployment_Config_ToolStripMenuItem,
-            this.初始化ToolStripMenuItem,
-            this.推送ToolStripMenuItem,
-            this.推送ToolStripMenuItem1});
+            this.Git_Init_ToolStripMenuItem,
+            this.Git_Commit_ToolStripMenuItem,
+            this.Git_Push_ToolStripMenuItem1});
             this.Deployment_toolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(151)))), ((int)(((byte)(251)))));
             this.Deployment_toolStripMenuItem1.Name = "Deployment_toolStripMenuItem1";
             this.Deployment_toolStripMenuItem1.Size = new System.Drawing.Size(68, 21);
@@ -229,27 +229,30 @@
             // Deployment_Config_ToolStripMenuItem
             // 
             this.Deployment_Config_ToolStripMenuItem.Name = "Deployment_Config_ToolStripMenuItem";
-            this.Deployment_Config_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.Deployment_Config_ToolStripMenuItem.Text = "配置文件";
+            this.Deployment_Config_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22); 
+            this.Deployment_Config_ToolStripMenuItem.Text = "配置文件"; 
             this.Deployment_Config_ToolStripMenuItem.Click += new System.EventHandler(this.Deployment_Config_ToolStripMenuItem_Click);
             // 
-            // 初始化ToolStripMenuItem
+            // Git_Init_ToolStripMenuItem
             // 
-            this.初始化ToolStripMenuItem.Name = "初始化ToolStripMenuItem";
-            this.初始化ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.初始化ToolStripMenuItem.Text = "初始化";
+            this.Git_Init_ToolStripMenuItem.Name = "Git_Init_ToolStripMenuItem";
+            this.Git_Init_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Git_Init_ToolStripMenuItem.Text = "初始化";
+            this.Git_Init_ToolStripMenuItem.Click += new System.EventHandler(this.Git_Init_ToolStripMenuItem_Click);
             // 
-            // 推送ToolStripMenuItem
+            // Git_Commit_ToolStripMenuItem
             // 
-            this.推送ToolStripMenuItem.Name = "推送ToolStripMenuItem";
-            this.推送ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.推送ToolStripMenuItem.Text = "提交修改";
+            this.Git_Commit_ToolStripMenuItem.Name = "Git_Commit_ToolStripMenuItem";
+            this.Git_Commit_ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.Git_Commit_ToolStripMenuItem.Text = "提交修改";
+            this.Git_Commit_ToolStripMenuItem.Click += new System.EventHandler(this.Git_Commit_ToolStripMenuItem_Click);
             // 
-            // 推送ToolStripMenuItem1
+            // Git_Push_ToolStripMenuItem1
             // 
-            this.推送ToolStripMenuItem1.Name = "推送ToolStripMenuItem1";
-            this.推送ToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
-            this.推送ToolStripMenuItem1.Text = "推送";
+            this.Git_Push_ToolStripMenuItem1.Name = "Git_Push_ToolStripMenuItem1";
+            this.Git_Push_ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.Git_Push_ToolStripMenuItem1.Text = "推送";
+            this.Git_Push_ToolStripMenuItem1.Click += new System.EventHandler(this.Git_Push_ToolStripMenuItem1_Click);
             // 
             // panel2
             // 
@@ -399,9 +402,9 @@
         private System.Windows.Forms.ToolStripMenuItem Site_Ref_ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Deployment_toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem Deployment_Config_ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 初始化ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 推送ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 推送ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem Git_Init_ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Git_Commit_ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Git_Push_ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem Dir_Create_toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem File_Save_toolStripMenuItem1;
     }
