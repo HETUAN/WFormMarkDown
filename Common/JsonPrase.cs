@@ -25,7 +25,7 @@ namespace WFormMarkDown.Common
                     var strsuff = str.Substring(i + 1, str.Length - i - 1);
                     var center = "\r\n" + getSpace(tabIndex + 1);
                     str = prestr + cr + center + strsuff;
-
+                    
                     i += center.Length;
                     tabIndex++;
                 }
