@@ -58,6 +58,7 @@
             this.tBox_FileName.Name = "tBox_FileName";
             this.tBox_FileName.Size = new System.Drawing.Size(250, 21);
             this.tBox_FileName.TabIndex = 2;
+            this.tBox_FileName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tBox_FileName_KeyPress);
             // 
             // FileCreate
             // 
@@ -68,7 +69,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_Create);
             this.Name = "FileCreate";
-            this.Text = "FileCreate";
+            this.Text = "新建文件";
+            this.Activated += new System.EventHandler(this.FileCreate_Activated);
+            this.Load += new System.EventHandler(this.FileCreate_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

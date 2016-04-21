@@ -43,5 +43,23 @@ namespace WFormMarkDown.FunctionForm
                 this.Close();
             }
         }
+
+        private void DirectoryCreate_Load(object sender, EventArgs e)
+        {
+            this.tBox_DirName.Focus();
+        }
+
+        private void DirectoryCreate_Activated(object sender, EventArgs e)
+        {
+            this.tBox_DirName.Focus();
+        }
+
+        private void tBox_DirName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                btn_Create_Click(sender, e);
+            }
+        }
     }
 }

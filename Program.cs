@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
+using System.Text;
+using WFormMarkDown.Entitys;
+using WFormMarkDown.Common;
 
 namespace WFormMarkDown
 {
@@ -114,6 +117,9 @@ namespace WFormMarkDown
                         // 创建
                         Directory.CreateDirectory(baseDir);
                     }
+                    else {
+                        return false;
+                    }
                 }
                 if (!File.Exists(configDir))
                 {
@@ -133,19 +139,46 @@ namespace WFormMarkDown
                         sw.Close();
                     }
                 }
+
                 if (!Directory.Exists(dataDir))
                 {
                     Directory.CreateDirectory(dataDir);
                 }
+
                 if (!Directory.Exists(markDownDir))
                 {
                     Directory.CreateDirectory(markDownDir);
-                    using (StreamWriter sw = File.CreateText(markDownDir + "\\README.MD"))
-                    {
-                        sw.Write("Hello World!");
-                        sw.Close();
-                    }
                 }
+
+                string readmepath = Path.Combine(markDownDir + "\\README.MD");
+                if (!File.Exists(readmepath))
+                {
+                    Entitys.BlogHead blogHead = new Entitys.BlogHead();
+                    blogHead.type = "";
+                    blogHead.tags = new List<string>();
+                    blogHead.tags.Add("1234");
+                    blogHead.tags.Add("qwer");
+                    blogHead.tags.Add("asd");
+                    blogHead.tags.Add("zxc");
+                    blogHead.photos = new List<string>();
+                    blogHead.photos.Add("dsafdfasdfasdfasdf");
+                    blogHead.photos.Add("sadfasdfasdfasdfasd");
+                    blogHead.description = "";
+                    blogHead.date = DateTime.Now;
+                    blogHead.title = "Hello World";
+                    StringBuilder headStr = new StringBuilder();
+                    headStr.AppendLine("---StartBlogHead"); 
+                    headStr.AppendLine(JsonPrase.PraseToJson(Newtonsoft.Json.JsonConvert.SerializeObject(blogHead)));
+                    headStr.AppendLine("---EndBlogHead"); 
+                    headStr.AppendLine("");
+                    headStr.AppendLine(BlogHeadHelper.GetHelloWorld());
+
+                    StreamWriter sw = File.CreateText(readmepath);
+                    sw.Write(headStr.ToString());
+                    sw.Close();
+                }
+
+
                 if (!Directory.Exists(blogDir))
                 {
                     Directory.CreateDirectory(blogDir);

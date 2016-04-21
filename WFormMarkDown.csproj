@@ -39,7 +39,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin">
-      <HintPath>..\HSolution\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <HintPath>..\HSolution\OwinWebServer\DLL\Microsoft.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Host.HttpListener">
       <HintPath>..\HSolution\packages\Microsoft.Owin.Host.HttpListener.3.0.1\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
@@ -67,10 +67,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\BlogHeadHelper.cs" />
     <Compile Include="Common\ContentTypeDic.cs" />
     <Compile Include="Common\DirectoryHelper.cs" />
     <Compile Include="Common\FileHelper.cs" />
     <Compile Include="Common\GitHelper.cs" />
+    <Compile Include="Common\JsonPrase.cs" />
     <Compile Include="Common\LeftTree.cs" />
     <Compile Include="Common\MarkDownCompile.cs" />
     <Compile Include="Common\MarkDownHelper.cs" />
@@ -172,8 +174,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="DLL\HexoData\config - 副本.json" />
+    <EmbeddedResource Include="DLL\HexoData\config - 副本.json" />
     <EmbeddedResource Include="DLL\HexoData\config.json" />
+    <EmbeddedResource Include="DLL\HexoData\bloghead.json" />
+    <EmbeddedResource Include="DLL\HexoData\Hello_World.MD" />
     <None Include="DLL\HexoData\Data\page_data.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
