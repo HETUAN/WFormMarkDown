@@ -160,7 +160,7 @@ namespace WFormMarkDown
                     StringBuilder headStr = new StringBuilder();
                     headStr.AppendLine("---StartBlogHead"); 
                     headStr.AppendLine(JsonPrase.PraseToJson(Newtonsoft.Json.JsonConvert.SerializeObject(blogHead)));
-                    headStr.AppendLine("---EndBlogHead");
+                    headStr.AppendLine("---EndBlogHead"); 
                     headStr.AppendLine("");
                     headStr.AppendLine(BlogHeadHelper.GetHelloWorld());
 
