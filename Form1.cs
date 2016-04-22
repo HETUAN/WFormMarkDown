@@ -18,7 +18,36 @@ namespace WFormMarkDown
     {
         public Common.LeftTree leftTree;
 
-        public bool IsTextBoxChanged = false;
+        /// <summary>
+        /// 文本中的内容是否修改标记
+        /// </summary>
+        private bool IsTextBoxChanged = false;
+
+        public bool GetIsTextChanged()
+        {
+            return this.IsTextBoxChanged;
+        }
+
+        public bool SetIsTextChanged(bool state)
+        {
+            if (state)
+            {
+                if (!this.IsTextBoxChanged)
+                {
+                    this.Text += "*";
+                }
+            }
+            else
+            {
+                if (this.IsTextBoxChanged)
+                {
+                    if (this.Text[this.Text.Length - 1] == '*')
+                        this.Text = this.Text.Substring(0, this.Text.Length - 1);
+                }
+            }
+            this.IsTextBoxChanged = state;
+            return this.IsTextBoxChanged;
+        }
 
         public Form1()
         {
@@ -64,6 +93,11 @@ namespace WFormMarkDown
             return true;
         }
 
+        /// <summary>
+        /// 目录树点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void treeView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             try
@@ -75,6 +109,7 @@ namespace WFormMarkDown
                     return;
                 this.textBox1.Text = File.ReadAllText(entity.GetFullPath());
                 this.textBox1.Tag = entity.GetFullPath();
+                this.SetIsTextChanged(false);
             }
             catch (Exception ex)
             {
@@ -83,20 +118,17 @@ namespace WFormMarkDown
         }
 
         /// <summary>
-        /// 
+        /// 文本内容发生修改
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            //MarkdownSharp.Markdown md = new MarkdownSharp.Markdown();
-            //string str = md.Transform(textBox1.Text);
-            //Console.WriteLine(str);
-            if (!IsTextBoxChanged)
+            if (!this.GetIsTextChanged())
             {
-                IsTextBoxChanged = true;
-                this.Text += "*";
+                this.SetIsTextChanged(true);
             }
+            Console.WriteLine(this.textBox1.Text.Length);
         }
 
         #region 顶部按钮事件
@@ -136,13 +168,13 @@ namespace WFormMarkDown
             {
                 Common.ProcessHelper.RunOwinWebServer();
                 Program.SetIsRunInLocal(true);
-                this.RunLocal_toolStripMenuItem2.Text = "停止";
+                this.RunLocal_toolStripMenuItem2.Text = "停止运行";
             }
             else
             {
                 Common.ProcessHelper.StopOwinWebServer();
                 Program.SetIsRunInLocal(false);
-                this.RunLocal_toolStripMenuItem2.Text = "运行";
+                this.RunLocal_toolStripMenuItem2.Text = "运行博客";
             }
             //if (Program.GetIsRunInLocal())
             //{
@@ -220,18 +252,21 @@ namespace WFormMarkDown
         private void Site_Base_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FunctionForm.SiteBaseSettings sbs = new FunctionForm.SiteBaseSettings();
+            sbs.StartPosition = FormStartPosition.CenterParent; 
             sbs.Show();
         }
 
         private void Site_Ref_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FunctionForm.SiteRefSettings sbs = new FunctionForm.SiteRefSettings();
+            sbs.StartPosition = FormStartPosition.CenterParent; 
             sbs.Show();
         }
 
         private void Deployment_Config_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FunctionForm.DeploymentSettings ds = new FunctionForm.DeploymentSettings();
+            ds.StartPosition = FormStartPosition.CenterParent; 
             ds.Show();
         }
 
@@ -263,6 +298,7 @@ namespace WFormMarkDown
 
             FunctionForm.FileCreate fc = new FunctionForm.FileCreate(curDir);
             fc.DelLeftTreeEvent += InitLeftTree;
+            fc.StartPosition = FormStartPosition.CenterParent; 
             fc.Show();
         }
 
@@ -288,6 +324,7 @@ namespace WFormMarkDown
 
             FunctionForm.DirectoryCreate dc = new FunctionForm.DirectoryCreate(curDir);
             dc.DelLeftTreeEvent += InitLeftTree;
+            dc.StartPosition = FormStartPosition.CenterParent; 
             dc.Show();
 
         }
@@ -343,13 +380,19 @@ namespace WFormMarkDown
             }
 
         }
-         
+
         private void File_Save_toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            string path = this.textBox1.Tag.ToString();
+            string path = "";
+            if (textBox1.Tag == null)
+                return;
+            
+            path = this.textBox1.Tag.ToString();
             if (this.IsTextBoxChanged && FileHelper.WriteFile(this.textBox1.Text, path))
             {
-                this.Text = this.Text.Substring(0, this.Text.Length - 1);
+                this.SetIsTextChanged(false);
+                //if (this.Text[this.Text.Length - 1] == '*')
+                //    this.Text = this.Text.Substring(0, this.Text.Length - 1);
                 //MessageBox.Show("文件保存成功！");
             }
         }
@@ -361,7 +404,7 @@ namespace WFormMarkDown
                 File_Save_toolStripMenuItem1_Click(sender, e);
             }
         }
-         
+
         private void Git_Init_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string blogDir = Program.GetBlogDir().Replace("\\", "/");
@@ -371,8 +414,8 @@ namespace WFormMarkDown
                 MessageBox.Show("Git Bush 路径错误！");
                 return;
             }
-            Common.GitHelper git = new Common.GitHelper(blogDir);
-            if (git.Init(blogDir)&&git.Remote(blogDir,Program.GetConfig().Deployment.repository, Program.GetConfig().Deployment.username, Program.GetConfig().Deployment.password))
+            Common.GitHelper git = new Common.GitHelper(gitpwd);
+            if (git.Init(blogDir) && git.Remote(blogDir, Program.GetConfig().Deployment.repository, Program.GetConfig().Deployment.username, Program.GetConfig().Deployment.password))
             {
                 MessageBox.Show("初始化成功!");
             }
@@ -421,6 +464,6 @@ namespace WFormMarkDown
             {
                 MessageBox.Show("推送失败!");
             }
-        } 
+        }
     }
 }

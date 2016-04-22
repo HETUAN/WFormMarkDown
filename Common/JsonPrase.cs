@@ -13,10 +13,6 @@ namespace WFormMarkDown.Common
             var tabIndex = 0;
             for (int i = 0; i < str.Length; i++)
             {
-                if (i == 120)
-                {
-                    int sdfa = 0;
-                }
                 var cr = str[i];
 
                 if (cr == '{' || cr == '[')
@@ -25,7 +21,7 @@ namespace WFormMarkDown.Common
                     var strsuff = str.Substring(i + 1, str.Length - i - 1);
                     var center = "\r\n" + getSpace(tabIndex + 1);
                     str = prestr + cr + center + strsuff;
-                    
+
                     i += center.Length;
                     tabIndex++;
                 }
