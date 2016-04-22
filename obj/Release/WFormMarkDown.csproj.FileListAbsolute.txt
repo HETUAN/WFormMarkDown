@@ -8,3 +8,4 @@ E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.FunctionForm.SiteBas
 E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.FunctionForm.SiteRefSettings.resources
 E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.Properties.Resources.resources
 E:\HEPW\MySpace\NET\WFormMarkDown\obj\Release\WFormMarkDown.csproj.GenerateResource.Cache
+E:\HEPW\MySpace\NET\WFormMarkDown\bin\Release\WFormMarkDown.exe.config
