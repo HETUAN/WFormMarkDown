@@ -178,7 +178,7 @@
     <EmbeddedResource Include="DLL\HexoData\config.json" />
     <EmbeddedResource Include="DLL\HexoData\bloghead.json" />
     <EmbeddedResource Include="DLL\HexoData\Hello_World.MD" />
-    <None Include="DLL\HexoData\Data\page_data.json" />
+    <EmbeddedResource Include="DLL\HexoData\Data\page_data.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

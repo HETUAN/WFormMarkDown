@@ -18,7 +18,36 @@ namespace WFormMarkDown
     {
         public Common.LeftTree leftTree;
 
-        public bool IsTextBoxChanged = false;
+        /// <summary>
+        /// 文本中的内容是否修改标记
+        /// </summary>
+        private bool IsTextBoxChanged = false;
+
+        public bool GetIsTextChanged()
+        {
+            return this.IsTextBoxChanged;
+        }
+
+        public bool SetIsTextChanged(bool state)
+        {
+            if (state)
+            {
+                if (!this.IsTextBoxChanged)
+                {
+                    this.Text += "*";
+                }
+            }
+            else
+            {
+                if (this.IsTextBoxChanged)
+                {
+                    if (this.Text[this.Text.Length - 1] == '*')
+                        this.Text = this.Text.Substring(0, this.Text.Length - 1);
+                }
+            }
+            this.IsTextBoxChanged = state;
+            return this.IsTextBoxChanged;
+        }
 
         public Form1()
         {
@@ -64,6 +93,11 @@ namespace WFormMarkDown
             return true;
         }
 
+        /// <summary>
+        /// 目录树点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void treeView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             try
@@ -75,6 +109,7 @@ namespace WFormMarkDown
                     return;
                 this.textBox1.Text = File.ReadAllText(entity.GetFullPath());
                 this.textBox1.Tag = entity.GetFullPath();
+                this.SetIsTextChanged(false);
             }
             catch (Exception ex)
             {
@@ -83,20 +118,17 @@ namespace WFormMarkDown
         }
 
         /// <summary>
-        /// 
+        /// 文本内容发生修改
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            //MarkdownSharp.Markdown md = new MarkdownSharp.Markdown();
-            //string str = md.Transform(textBox1.Text);
-            //Console.WriteLine(str);
-            if (!IsTextBoxChanged)
+            if (!this.GetIsTextChanged())
             {
-                IsTextBoxChanged = true;
-                this.Text += "*";
+                this.SetIsTextChanged(true);
             }
+            Console.WriteLine(this.textBox1.Text.Length);
         }
 
         #region 顶部按钮事件
@@ -343,13 +375,19 @@ namespace WFormMarkDown
             }
 
         }
-         
+
         private void File_Save_toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            string path = this.textBox1.Tag.ToString();
+            string path = "";
+            if (textBox1.Tag == null)
+                return;
+            
+            path = this.textBox1.Tag.ToString();
             if (this.IsTextBoxChanged && FileHelper.WriteFile(this.textBox1.Text, path))
             {
-                this.Text = this.Text.Substring(0, this.Text.Length - 1);
+                this.SetIsTextChanged(false);
+                //if (this.Text[this.Text.Length - 1] == '*')
+                //    this.Text = this.Text.Substring(0, this.Text.Length - 1);
                 //MessageBox.Show("文件保存成功！");
             }
         }
@@ -361,7 +399,7 @@ namespace WFormMarkDown
                 File_Save_toolStripMenuItem1_Click(sender, e);
             }
         }
-         
+
         private void Git_Init_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string blogDir = Program.GetBlogDir().Replace("\\", "/");
@@ -372,7 +410,7 @@ namespace WFormMarkDown
                 return;
             }
             Common.GitHelper git = new Common.GitHelper(blogDir);
-            if (git.Init(blogDir)&&git.Remote(blogDir,Program.GetConfig().Deployment.repository, Program.GetConfig().Deployment.username, Program.GetConfig().Deployment.password))
+            if (git.Init(blogDir) && git.Remote(blogDir, Program.GetConfig().Deployment.repository, Program.GetConfig().Deployment.username, Program.GetConfig().Deployment.password))
             {
                 MessageBox.Show("初始化成功!");
             }
@@ -421,6 +459,6 @@ namespace WFormMarkDown
             {
                 MessageBox.Show("推送失败!");
             }
-        } 
+        }
     }
 }
