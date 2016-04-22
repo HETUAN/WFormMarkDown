@@ -168,13 +168,13 @@ namespace WFormMarkDown
             {
                 Common.ProcessHelper.RunOwinWebServer();
                 Program.SetIsRunInLocal(true);
-                this.RunLocal_toolStripMenuItem2.Text = "停止";
+                this.RunLocal_toolStripMenuItem2.Text = "停止运行";
             }
             else
             {
                 Common.ProcessHelper.StopOwinWebServer();
                 Program.SetIsRunInLocal(false);
-                this.RunLocal_toolStripMenuItem2.Text = "运行";
+                this.RunLocal_toolStripMenuItem2.Text = "运行博客";
             }
             //if (Program.GetIsRunInLocal())
             //{
@@ -252,18 +252,21 @@ namespace WFormMarkDown
         private void Site_Base_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FunctionForm.SiteBaseSettings sbs = new FunctionForm.SiteBaseSettings();
+            sbs.StartPosition = FormStartPosition.CenterParent; 
             sbs.Show();
         }
 
         private void Site_Ref_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FunctionForm.SiteRefSettings sbs = new FunctionForm.SiteRefSettings();
+            sbs.StartPosition = FormStartPosition.CenterParent; 
             sbs.Show();
         }
 
         private void Deployment_Config_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FunctionForm.DeploymentSettings ds = new FunctionForm.DeploymentSettings();
+            ds.StartPosition = FormStartPosition.CenterParent; 
             ds.Show();
         }
 
@@ -295,6 +298,7 @@ namespace WFormMarkDown
 
             FunctionForm.FileCreate fc = new FunctionForm.FileCreate(curDir);
             fc.DelLeftTreeEvent += InitLeftTree;
+            fc.StartPosition = FormStartPosition.CenterParent; 
             fc.Show();
         }
 
@@ -320,6 +324,7 @@ namespace WFormMarkDown
 
             FunctionForm.DirectoryCreate dc = new FunctionForm.DirectoryCreate(curDir);
             dc.DelLeftTreeEvent += InitLeftTree;
+            dc.StartPosition = FormStartPosition.CenterParent; 
             dc.Show();
 
         }
@@ -409,7 +414,7 @@ namespace WFormMarkDown
                 MessageBox.Show("Git Bush 路径错误！");
                 return;
             }
-            Common.GitHelper git = new Common.GitHelper(blogDir);
+            Common.GitHelper git = new Common.GitHelper(gitpwd);
             if (git.Init(blogDir) && git.Remote(blogDir, Program.GetConfig().Deployment.repository, Program.GetConfig().Deployment.username, Program.GetConfig().Deployment.password))
             {
                 MessageBox.Show("初始化成功!");

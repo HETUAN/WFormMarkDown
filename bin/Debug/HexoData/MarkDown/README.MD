@@ -1,7 +1,7 @@
-﻿---StartBlogHead
+---StartBlogHead
 {
     "title":"Hello World",
-    "date":"2016-04-22T17:05:19.1711265+08:00",
+    "date":"2016-04-22T18:31:44.688335+08:00",
     "type":"",
     "tags":[],
     "photos":[],
@@ -9,5 +9,4 @@
 }
 ---EndBlogHead
 
-##系统使用说明
-
+##系统使用说明  
