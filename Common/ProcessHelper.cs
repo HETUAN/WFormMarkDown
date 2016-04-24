@@ -68,6 +68,11 @@ namespace WFormMarkDown.Common
         {
             try
             {
+                System.Diagnostics.Process[] pp = System.Diagnostics.Process.GetProcessesByName("OwinWebServer");
+                foreach (var item in pp)
+                {
+                    Console.WriteLine(item.Id);
+                }
                 p.StandardInput.WriteLine("exit");
                 p.StandardInput.WriteLine("exit");
                 p.StandardInput.WriteLine("exit");
