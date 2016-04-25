@@ -378,7 +378,6 @@ namespace WFormMarkDown
                 Common.ProcessHelper.StopOwinWebServer();
                 Program.SetIsRunInLocal(false);
             }
-
         }
 
         private void File_Save_toolStripMenuItem1_Click(object sender, EventArgs e)

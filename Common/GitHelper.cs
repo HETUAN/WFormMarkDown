@@ -40,18 +40,24 @@ namespace WFormMarkDown.Common
                 p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
                 p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
                 p.StartInfo.RedirectStandardError = true;//重定向标准错误输出
-                p.StartInfo.CreateNoWindow = true;//不显示程序窗口
+                p.StartInfo.CreateNoWindow = false;//不显示程序窗口
                 p.Start();//启动程序
 
                 //向cmd窗口发送输入信息 
+                Console.WriteLine(p.StartInfo.WorkingDirectory);
                 p.StandardInput.WriteLine(@"cd " + dir);
+                Console.WriteLine(p.StartInfo.WorkingDirectory);
                 p.StandardInput.WriteLine("git init");
+                string retStr = p.StandardOutput.ReadToEnd();
                 p.StandardInput.WriteLine("exit");
+                p.Close();
+                Console.WriteLine(retStr);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -72,7 +78,10 @@ namespace WFormMarkDown.Common
                 //向cmd窗口发送输入信息 
                 p.StandardInput.WriteLine(@"cd " + dir);
                 p.StandardInput.WriteLine("git add .");
+                string retStr = p.StandardOutput.ReadToEnd();
                 p.StandardInput.WriteLine("exit");
+                p.Close();
+                Console.WriteLine(retStr);
                 return true;
             }
             catch (Exception)
@@ -98,7 +107,10 @@ namespace WFormMarkDown.Common
                 //向cmd窗口发送输入信息 
                 p.StandardInput.WriteLine(@"cd " + dir);
                 p.StandardInput.WriteLine("git commit -m \"" + msg + "\"");
+                string retStr = p.StandardOutput.ReadToEnd();
                 p.StandardInput.WriteLine("exit");
+                p.Close();
+                Console.WriteLine(retStr);
                 return true;
             }
             catch (Exception)
@@ -124,7 +136,10 @@ namespace WFormMarkDown.Common
                 //向cmd窗口发送输入信息 
                 p.StandardInput.WriteLine(@"cd " + dir);
                 p.StandardInput.WriteLine("git remote rm");
+                string retStr = p.StandardOutput.ReadToEnd();
                 p.StandardInput.WriteLine("exit");
+                p.Close();
+                Console.WriteLine(retStr);
                 return true;
             }
             catch (Exception ex)
@@ -150,7 +165,10 @@ namespace WFormMarkDown.Common
                 //向cmd窗口发送输入信息 
                 p.StandardInput.WriteLine(@"cd " + dir);
                 p.StandardInput.WriteLine(string.Format("git remote add origin http://{0}:{1}@{2}", UserName, PassWord, url.Replace("http://", string.Empty)));
+                string retStr = p.StandardOutput.ReadToEnd();
                 p.StandardInput.WriteLine("exit");
+                p.Close();
+                Console.WriteLine(retStr);
                 return true;
             }
             catch (Exception)
@@ -176,7 +194,10 @@ namespace WFormMarkDown.Common
                 //向cmd窗口发送输入信息 
                 p.StandardInput.WriteLine(@"cd " + dir);
                 p.StandardInput.WriteLine("git push -u origin master");
+                string retStr = p.StandardOutput.ReadToEnd();
                 p.StandardInput.WriteLine("exit");
+                p.Close();
+                Console.WriteLine(retStr);
                 return true;
             }
             catch (Exception)
