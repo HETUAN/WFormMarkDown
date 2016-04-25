@@ -6,10 +6,6 @@ E:\HEPW\MySpace\NET\WFormMarkDown\bin\Debug\Microsoft.Owin.dll
 E:\HEPW\MySpace\NET\WFormMarkDown\bin\Debug\Microsoft.Owin.Host.HttpListener.dll
 E:\HEPW\MySpace\NET\WFormMarkDown\bin\Debug\Microsoft.Owin.Hosting.dll
 E:\HEPW\MySpace\NET\WFormMarkDown\bin\Debug\Newtonsoft.Json.dll
-E:\HEPW\MySpace\NET\WFormMarkDown\bin\Debug\MarkdownSharp.pdb
-E:\HEPW\MySpace\NET\WFormMarkDown\bin\Debug\MarkdownSharp.xml
-E:\HEPW\MySpace\NET\WFormMarkDown\bin\Debug\Microsoft.Owin.Host.HttpListener.xml
-E:\HEPW\MySpace\NET\WFormMarkDown\bin\Debug\Microsoft.Owin.Hosting.xml
 E:\HEPW\MySpace\NET\WFormMarkDown\obj\Debug\WFormMarkDown.csprojResolveAssemblyReference.cache
 E:\HEPW\MySpace\NET\WFormMarkDown\obj\Debug\WFormMarkDown.Form1.resources
 E:\HEPW\MySpace\NET\WFormMarkDown\obj\Debug\WFormMarkDown.Form2.resources
@@ -46,3 +42,4 @@ D:\NET\projects\TSolution\WFormMarkDown\obj\Debug\WFormMarkDown.FunctionForm.Sit
 D:\NET\projects\TSolution\WFormMarkDown\obj\Debug\WFormMarkDown.FunctionForm.SiteRefSettings.resources
 D:\NET\projects\TSolution\WFormMarkDown\obj\Debug\WFormMarkDown.Properties.Resources.resources
 D:\NET\projects\TSolution\WFormMarkDown\obj\Debug\WFormMarkDown.csproj.GenerateResource.Cache
+E:\HEPW\MySpace\NET\WFormMarkDown\bin\Debug\Owin.dll
