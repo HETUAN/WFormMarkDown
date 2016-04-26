@@ -25,7 +25,7 @@ namespace WFormMarkDown.Common
             }
             else
             {
-                this.workPath = @"C:\Program Files\Git\bin\sh.exe";
+                this.workPath = @"C:\Program Files\Git\bin\bash.exe";
             }
         }
 
@@ -35,6 +35,8 @@ namespace WFormMarkDown.Common
             {
                 System.Diagnostics.Process p = new System.Diagnostics.Process();
                 p.StartInfo.FileName = this.workPath;
+                p.StartInfo.WorkingDirectory = dir;
+                p.StartInfo.Arguments = "-c \"git init\"";
                 //p.StartInfo.FileName = @"cmd.exe";
                 p.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
                 p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
@@ -44,20 +46,21 @@ namespace WFormMarkDown.Common
                 p.Start();//启动程序
 
                 //向cmd窗口发送输入信息 
-                Console.WriteLine(p.StartInfo.WorkingDirectory);
-                p.StandardInput.WriteLine(@"cd " + dir);
-                Console.WriteLine(p.StartInfo.WorkingDirectory);
-                p.StandardInput.WriteLine("git init");
+                //Console.WriteLine(p.StartInfo.WorkingDirectory);
+                //p.StandardInput.WriteLine(@"cd " + dir);
+                //Console.WriteLine(p.StartInfo.WorkingDirectory);
+                //p.StandardInput.WriteLine("git init");
                 string retStr = p.StandardOutput.ReadToEnd();
-                p.StandardInput.WriteLine("exit");
+                string errStr = p.StandardError.ReadToEnd();
+                //p.StandardInput.WriteLine("exit");
                 p.Close();
                 Console.WriteLine(retStr);
                 return true;
             }
             catch (Exception ex)
             {
-                return false;
                 Console.WriteLine(ex.Message);
+                return false;
             }
         }
 
@@ -67,7 +70,8 @@ namespace WFormMarkDown.Common
             {
                 System.Diagnostics.Process p = new System.Diagnostics.Process();
                 p.StartInfo.FileName = this.workPath;
-                //p.StartInfo.FileName = @"cmd.exe";
+                p.StartInfo.WorkingDirectory = dir;
+                p.StartInfo.Arguments = "-c \"git add .\"";
                 p.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
                 p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
                 p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
@@ -76,10 +80,11 @@ namespace WFormMarkDown.Common
                 p.Start();//启动程序
 
                 //向cmd窗口发送输入信息 
-                p.StandardInput.WriteLine(@"cd " + dir);
-                p.StandardInput.WriteLine("git add .");
+                //p.StandardInput.WriteLine(@"cd " + dir);
+                //p.StandardInput.WriteLine("git add .");
                 string retStr = p.StandardOutput.ReadToEnd();
-                p.StandardInput.WriteLine("exit");
+                string errStr = p.StandardError.ReadToEnd();
+                //p.StandardInput.WriteLine("exit");
                 p.Close();
                 Console.WriteLine(retStr);
                 return true;
@@ -96,7 +101,8 @@ namespace WFormMarkDown.Common
             {
                 System.Diagnostics.Process p = new System.Diagnostics.Process();
                 p.StartInfo.FileName = this.workPath;
-                //p.StartInfo.FileName = @"cmd.exe";
+                p.StartInfo.WorkingDirectory = dir;
+                p.StartInfo.Arguments = "-c \"git commit -m " + msg + "\"";
                 p.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
                 p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
                 p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
@@ -105,10 +111,11 @@ namespace WFormMarkDown.Common
                 p.Start();//启动程序
 
                 //向cmd窗口发送输入信息 
-                p.StandardInput.WriteLine(@"cd " + dir);
-                p.StandardInput.WriteLine("git commit -m \"" + msg + "\"");
+                //p.StandardInput.WriteLine(@"cd " + dir);
+                //p.StandardInput.WriteLine("git commit -m \"" + msg + "\"");
                 string retStr = p.StandardOutput.ReadToEnd();
-                p.StandardInput.WriteLine("exit");
+                string errStr = p.StandardError.ReadToEnd();
+                //p.StandardInput.WriteLine("exit");
                 p.Close();
                 Console.WriteLine(retStr);
                 return true;
@@ -125,7 +132,8 @@ namespace WFormMarkDown.Common
             {
                 System.Diagnostics.Process p = new System.Diagnostics.Process();
                 p.StartInfo.FileName = this.workPath;
-                //p.StartInfo.FileName = @"cmd.exe";
+                p.StartInfo.WorkingDirectory = dir;
+                p.StartInfo.Arguments = "-c \"git remote rm origin\"";
                 p.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
                 p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
                 p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
@@ -134,10 +142,11 @@ namespace WFormMarkDown.Common
                 p.Start();//启动程序
 
                 //向cmd窗口发送输入信息 
-                p.StandardInput.WriteLine(@"cd " + dir);
-                p.StandardInput.WriteLine("git remote rm");
+                //p.StandardInput.WriteLine(@"cd " + dir);
+                //p.StandardInput.WriteLine("git remote rm");
                 string retStr = p.StandardOutput.ReadToEnd();
-                p.StandardInput.WriteLine("exit");
+                string errStr = p.StandardError.ReadToEnd();
+                //p.StandardInput.WriteLine("exit");
                 p.Close();
                 Console.WriteLine(retStr);
                 return true;
@@ -154,7 +163,8 @@ namespace WFormMarkDown.Common
             {
                 System.Diagnostics.Process p = new System.Diagnostics.Process();
                 p.StartInfo.FileName = this.workPath;
-                //p.StartInfo.FileName = @"cmd.exe";
+                p.StartInfo.WorkingDirectory = dir;
+                p.StartInfo.Arguments = "-c "+ string.Format("\"git remote add origin http://{0}:{1}@{2}\"", UserName, PassWord, url.Replace("http://", string.Empty));
                 p.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
                 p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
                 p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
@@ -163,10 +173,11 @@ namespace WFormMarkDown.Common
                 p.Start();//启动程序
 
                 //向cmd窗口发送输入信息 
-                p.StandardInput.WriteLine(@"cd " + dir);
-                p.StandardInput.WriteLine(string.Format("git remote add origin http://{0}:{1}@{2}", UserName, PassWord, url.Replace("http://", string.Empty)));
+                //p.StandardInput.WriteLine(@"cd " + dir);
+                //p.StandardInput.WriteLine(string.Format("git remote add origin http://{0}:{1}@{2}", UserName, PassWord, url.Replace("http://", string.Empty)));
                 string retStr = p.StandardOutput.ReadToEnd();
-                p.StandardInput.WriteLine("exit");
+                string errStr = p.StandardError.ReadToEnd();
+                //p.StandardInput.WriteLine("exit");
                 p.Close();
                 Console.WriteLine(retStr);
                 return true;
@@ -183,7 +194,8 @@ namespace WFormMarkDown.Common
             {
                 System.Diagnostics.Process p = new System.Diagnostics.Process();
                 p.StartInfo.FileName = this.workPath;
-                //p.StartInfo.FileName = @"cmd.exe";
+                p.StartInfo.WorkingDirectory = dir;
+                p.StartInfo.Arguments = "-c \"git push -u origin master\"";
                 p.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
                 p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
                 p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
@@ -192,10 +204,11 @@ namespace WFormMarkDown.Common
                 p.Start();//启动程序
 
                 //向cmd窗口发送输入信息 
-                p.StandardInput.WriteLine(@"cd " + dir);
-                p.StandardInput.WriteLine("git push -u origin master");
+                //p.StandardInput.WriteLine(@"cd " + dir);
+                //p.StandardInput.WriteLine("git push -u origin master");
                 string retStr = p.StandardOutput.ReadToEnd();
-                p.StandardInput.WriteLine("exit");
+                string errStr = p.StandardError.ReadToEnd();
+                //p.StandardInput.WriteLine("exit");
                 p.Close();
                 Console.WriteLine(retStr);
                 return true;

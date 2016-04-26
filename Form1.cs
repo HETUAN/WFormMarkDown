@@ -414,7 +414,7 @@ namespace WFormMarkDown
                 return;
             }
             Common.GitHelper git = new Common.GitHelper(gitpwd);
-            if (git.Init(blogDir) && git.Remote(blogDir, Program.GetConfig().Deployment.repository, Program.GetConfig().Deployment.username, Program.GetConfig().Deployment.password))
+            if (git.Init(blogDir) && git.RmRemote(blogDir) && git.Remote(blogDir, Program.GetConfig().Deployment.repository, Program.GetConfig().Deployment.username, Program.GetConfig().Deployment.password))
             {
                 MessageBox.Show("初始化成功!");
             }
