@@ -164,7 +164,7 @@ namespace WFormMarkDown.Common
                 System.Diagnostics.Process p = new System.Diagnostics.Process();
                 p.StartInfo.FileName = this.workPath;
                 p.StartInfo.WorkingDirectory = dir;
-                p.StartInfo.Arguments = "-c "+ string.Format("\"git remote add origin http://{0}:{1}@{2}\"", UserName, PassWord, url.Replace("http://", string.Empty));
+                p.StartInfo.Arguments = "-c "+ string.Format("\"git remote add origin https://{0}:{1}@{2}\"", UserName, PassWord, url.Replace("https://", string.Empty));
                 p.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
                 p.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
                 p.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息

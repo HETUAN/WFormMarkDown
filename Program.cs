@@ -201,6 +201,23 @@ namespace WFormMarkDown
                         sw.Close();
                     }
                 }
+
+
+                string markdownStyle = Path.Combine(blogDir, "Styles", "markdownstyle.css");
+                if (!File.Exists(markdownStyle))
+                {
+                    //如果不存在 则从嵌入资源内读取 BlockSet.xml 
+                    Assembly asm = Assembly.GetExecutingAssembly();//读取嵌入式资源
+                    Stream sm = asm.GetManifestResourceStream("WFormMarkDown.DLL.web.markdownstyle.css");
+                    StreamReader sr = new StreamReader(sm);
+                    string markdownStyleContent = sr.ReadToEnd();
+                    sr.Close();
+                    using (StreamWriter sw = File.CreateText(markdownStyle))
+                    {
+                        sw.Write(markdownStyleContent);
+                        sw.Close();
+                    }
+                }
                 return true;
             }
             catch (Exception ex)
