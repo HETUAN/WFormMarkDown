@@ -75,6 +75,7 @@ namespace WFormMarkDown.Common
             //FileHelper.WriteFile(string.Format(htmlModel, headStr, indexHtml.ToString()), pathStr);
             CompileIndexPage();
             CompileListPages();
+            CompileUserPart();
             return num;
         }
 
@@ -85,7 +86,67 @@ namespace WFormMarkDown.Common
         private bool CompileIndexPage()
         {
             string pathStr = Path.Combine(Program.GetBlogDir(), "index.html");
-            return FileHelper.WriteFile(string.Format(htmlModel, headStr, indexHtml.ToString()), pathStr);
+            FileHelper.WriteFile(string.Format(htmlModel, headStr, indexHtml.ToString()), pathStr);
+
+            string tagsPath = Path.Combine(Program.GetBlogDir(), "tags.html");
+            StringBuilder tagshtml = new StringBuilder();
+            foreach (var tag in tagList)
+            {
+                tagshtml.AppendLine("");
+                tagshtml.AppendLine("<p>");
+                tagshtml.AppendLine(string.Format("    <a title=\"{0}\" target=\"_self\" href=\"{1}\\\">", tag, "tag_" + tag + ".html"));
+                tagshtml.AppendLine(string.Format("        <h3>{0}</h3>", tag));
+                tagshtml.AppendLine("    </a>");
+                tagshtml.AppendLine("</p>");
+            }
+            FileHelper.WriteFile(string.Format(htmlModel, headStr, tagshtml.ToString()), tagsPath);
+
+
+            string typesPath = Path.Combine(Program.GetBlogDir(), "types.html");
+            StringBuilder typeshtml = new StringBuilder();
+            foreach (var type in typeList)
+            {
+                typeshtml.AppendLine("");
+                typeshtml.AppendLine("<p>");
+                typeshtml.AppendLine(string.Format("    <a title=\"{0}\" target=\"_self\" href=\"{1}\\\">", type, "tag_" + type + ".html"));
+                typeshtml.AppendLine(string.Format("        <h3>{0}</h3>", type));
+                typeshtml.AppendLine("    </a>");
+                typeshtml.AppendLine("</p>");
+            }
+            FileHelper.WriteFile(string.Format(htmlModel, headStr, typeshtml.ToString()), typesPath);
+            return true;
+        }
+
+        /// <summary>
+        /// 生成左侧的数据Json
+        /// </summary>
+        /// <returns></returns>
+        private bool CompileUserPart()
+        {
+            string userdatapath = Path.Combine(Program.GetDataDir(), "userview.json");
+            UserView userView;
+            if (File.Exists(userdatapath))
+            {
+                string userViewJsonStr = FileHelper.ReadFile(userdatapath);
+                if (!string.IsNullOrWhiteSpace(userViewJsonStr))
+                    userView = Newtonsoft.Json.JsonConvert.DeserializeObject<UserView>(userViewJsonStr);
+                else
+                    userView = new UserView();
+            }
+            else
+            {
+                userView = new UserView();
+            }
+
+            userView.username = Program.GetConfig().Site.author;
+            userView.userhead = Program.GetConfig().Site.headico;
+            userView.title = Program.GetConfig().Site.title;
+
+            userView.tagcount = tagList.Count;
+            userView.typecount = typeList.Count;
+
+            string userViewJson = Newtonsoft.Json.JsonConvert.SerializeObject(userView);
+            return FileHelper.WriteFile(userViewJson, userdatapath);
         }
 
         /// <summary>
@@ -182,11 +243,14 @@ namespace WFormMarkDown.Common
                 StringBuilder blogFootStr = new StringBuilder();
                 blogFootStr.AppendLine("");
                 blogFootStr.AppendLine("<p>");
-                blogFootStr.AppendLine(string.Format("<a title =\"pre\" class=\"prev-article\" href=\"{0}\" > 上一篇</a>","#"));
-                blogFootStr.AppendLine(string.Format("<a title=\"next\" class=\"next-article\" href=\"#{0}\">下一篇</a>","#"));
-                blogFootStr.AppendLine("</p>"); 
+                blogFootStr.AppendLine(string.Format("<a title =\"pre\" class=\"prev-article\" href=\"{0}\" > 上一篇</a>", "#"));
+                blogFootStr.AppendLine(string.Format("<a title=\"next\" class=\"next-article\" href=\"#{0}\">下一篇</a>", "#"));
+                blogFootStr.AppendLine("</p>");
                 // 将md文件转换成html
-                string articleStr = string.Format("<article><h1 class=\"article-title\">{0}</h1>\n\r\n\r{1}\n\r\n\r{2}</article>", blogHead.title, MarkDownHelper.ConvertToHtml(mdBody), blogFootStr.ToString());
+
+                MarkdownSharp.Markdown md = new MarkdownSharp.Markdown();
+                string articleStr = string.Format("<article><h1 class=\"article-title\">{0}</h1>\n\r\n\r{1}\n\r\n\r{2}</article>", blogHead.title, md.Transform(mdBody), blogFootStr.ToString());
+                //string articleStr = string.Format("<article><h1 class=\"article-title\">{0}</h1>\n\r\n\r{1}\n\r\n\r{2}</article>", blogHead.title, MarkDownHelper.ConvertToHtml(mdBody), blogFootStr.ToString());
 
                 // 创建html文件存放路径
                 if (!Directory.Exists(dirStr))
